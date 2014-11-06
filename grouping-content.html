@@ -1,0 +1,2055 @@
+<!DOCTYPE html><html lang="en-US-x-Hixie"><meta charset="utf-8"><title>4.4 Grouping content — HTML5</title><script src="link-fixup.js"></script><style type="text/css">
+
+     .applies thead th > * { display: block; }
+     .applies thead code { display: block; }
+     .applies tbody th { white-space: nowrap; }
+     .applies td { text-align: center; }
+     .applies .yes { background: yellow; }
+
+     .matrix, .matrix td { border: hidden; text-align: right; }
+     .matrix { margin-left: 2em; }
+
+     .dice-example { border-collapse: collapse; border-style: hidden solid solid hidden; border-width: thin; margin-left: 3em; }
+     .dice-example caption { width: 30em; font-size: smaller; font-style: italic; padding: 0.75em 0; text-align: left; }
+     .dice-example td, .dice-example th { border: solid thin; width: 1.35em; height: 1.05em; text-align: center; padding: 0; }
+
+     td.eg { border-width: thin; text-align: center; }
+
+     #table-example-1 { border: solid thin; border-collapse: collapse; margin-left: 3em; }
+     #table-example-1 * { font-family: "Essays1743", serif; line-height: 1.01em; }
+     #table-example-1 caption { padding-bottom: 0.5em; }
+     #table-example-1 thead, #table-example-1 tbody { border: none; }
+     #table-example-1 th, #table-example-1 td { border: solid thin; }
+     #table-example-1 th { font-weight: normal; }
+     #table-example-1 td { border-style: none solid; vertical-align: top; }
+     #table-example-1 th { padding: 0.5em; vertical-align: middle; text-align: center; }
+     #table-example-1 tbody tr:first-child td { padding-top: 0.5em; }
+     #table-example-1 tbody tr:last-child td { padding-bottom: 1.5em; }
+     #table-example-1 tbody td:first-child { padding-left: 2.5em; padding-right: 0; width: 9em; }
+     #table-example-1 tbody td { padding-left: 2em; padding-right: 2em; }
+     #table-example-1 tbody td:first-child + td { width: 10em; }
+     #table-example-1 tbody td:first-child + td ~ td { width: 2.5em; }
+     #table-example-1 tbody td:first-child + td + td + td ~ td { width: 1.25em; }
+
+     .apple-table-examples { border: none; border-collapse: separate; border-spacing: 1.5em 0em; width: 40em; margin-left: 3em; }
+     .apple-table-examples * { font-family: "Times", serif; }
+     .apple-table-examples td, .apple-table-examples th { border: none; white-space: nowrap; padding-top: 0; padding-bottom: 0; }
+     .apple-table-examples tbody th:first-child { border-left: none; width: 100%; }
+     .apple-table-examples thead th:first-child ~ th { font-size: smaller; font-weight: bolder; border-bottom: solid 2px; text-align: center; }
+     .apple-table-examples tbody th, .apple-table-examples tfoot th { font: inherit; text-align: left; }
+     .apple-table-examples td { text-align: right; vertical-align: top; }
+     .apple-table-examples.e1 tbody tr:last-child td { border-bottom: solid 1px; }
+     .apple-table-examples.e1 tbody + tbody tr:last-child td { border-bottom: double 3px; }
+     .apple-table-examples.e2 th[scope=row] { padding-left: 1em; }
+     .apple-table-examples sup { line-height: 0; }
+
+     .details-example img { vertical-align: top; }
+
+     #base64-table {
+       white-space: nowrap;
+       font-size: 0.6em;
+       column-width: 6em;
+       column-count: 5;
+       column-gap: 1em;
+       -moz-column-width: 6em;
+       -moz-column-count: 5;
+       -moz-column-gap: 1em;
+       -webkit-column-width: 6em;
+       -webkit-column-count: 5;
+       -webkit-column-gap: 1em;
+     }
+     #base64-table thead { display: none; }
+     #base64-table * { border: none; }
+     #base64-table tbody td:first-child:after { content: ':'; }
+     #base64-table tbody td:last-child { text-align: right; }
+
+     #named-character-references-table {
+       white-space: nowrap;
+       font-size: 0.6em;
+       column-width: 30em;
+       column-gap: 1em;
+       -moz-column-width: 30em;
+       -moz-column-gap: 1em;
+       -webkit-column-width: 30em;
+       -webkit-column-gap: 1em;
+     }
+     #named-character-references-table > table > tbody > tr > td:first-child + td,
+     #named-character-references-table > table > tbody > tr > td:last-child { text-align: center; }
+     #named-character-references-table > table > tbody > tr > td:last-child:hover > span { position: absolute; top: auto; left: auto; margin-left: 0.5em; line-height: 1.2; font-size: 5em; border: outset; padding: 0.25em 0.5em; background: white; width: 1.25em; height: auto; text-align: center; }
+     #named-character-references-table > table > tbody > tr#entity-CounterClockwiseContourIntegral > td:first-child { font-size: 0.5em; }
+
+     .glyph.control { color: red; }
+
+     @font-face {
+       font-family: 'Essays1743';
+       src: url('fonts/Essays1743.ttf');
+     }
+     @font-face {
+       font-family: 'Essays1743';
+       font-weight: bold;
+       src: url('fonts/Essays1743-Bold.ttf');
+     }
+     @font-face {
+       font-family: 'Essays1743';
+       font-style: italic;
+       src: url('fonts/Essays1743-Italic.ttf');
+     }
+     @font-face {
+       font-family: 'Essays1743';
+       font-style: italic;
+       font-weight: bold;
+       src: url('fonts/Essays1743-BoldItalic.ttf');
+     }
+
+    </style><style type="text/css">
+       pre { margin-left: 2em; white-space: pre-wrap; }
+       h2 { margin: 3em 0 1em 0; }
+       h3 { margin: 2.5em 0 1em 0; }
+       h4 { margin: 2.5em 0 0.75em 0; }
+       h5, h6 { margin: 2.5em 0 1em; }
+       h1 + h2, h1 + h2 + h2, h1 + p, h1 + p + h2 { margin: 0.75em 0 0.75em; }
+       h2 + h3, h3 + h4, h4 + h5, h5 + h6 { margin-top: 0.5em; }
+       p { margin: 1em 0; }
+       hr:not(.top) { display: block; background: none; border: none; padding: 0; margin: 2em 0; height: auto; }
+       .element dd,  .element dl { margin-top: 0em; margin-bottom: 0.25em;}
+       dt { margin-top: 0.75em; margin-bottom: 0.5em; clear: left; }
+        .element dt { margin-top: 0.5em; margin-bottom: 0.5em;  }
+       dt + dt { margin-top: 0; }
+       dd dt { margin-top: 0.25em; margin-bottom: 0; }
+       dd p { margin-top: 0; }
+       dd dl + p { margin-top: 1em; }
+       dd table + p { margin-top: 1em; }
+       p + * > li, dd li { margin: 1em 0; }
+       dt, dfn { font-weight: bold; font-style: normal; }
+       i, em { font-style: italic; }
+       dt dfn { font-style: italic; }
+       pre, code { font-size: inherit; font-family: monospace; font-variant: normal; }
+       pre strong { color: black; font: inherit; font-weight: bold; background: yellow; }
+       pre em { font-weight: bolder; font-style: normal; }
+       @media screen { code { color: #D93B00; } code :link, code :visited { color: inherit; } }
+       var { background-color: #f9f9f9; border: 1px solid #eee; padding: 0 2px; }
+       var sub { vertical-align: bottom; font-size: smaller; position: relative; top: 0.1em; }
+       table { border-collapse: collapse; border-style: hidden hidden none hidden; }
+       table thead, table tbody { border-bottom: solid; }
+       table tbody th:first-child { border-left: solid; }
+       table tbody th { text-align: left; }
+       table td, table th { border-left: solid; border-right: solid; border-bottom: solid thin; vertical-align: top; padding: 0.2em; }
+       blockquote { margin: 0 0 0 2em; border: 0; padding: 0; font-style: italic; }
+
+       .bad, .bad *:not(.XXX) { color: #5F6D7A; border-color: gray; background: transparent; }
+       .matrix, .matrix td { border: none; text-align: right; }
+       .matrix { margin-left: 2em; }
+       .dice-example { border-collapse: collapse; border-style: hidden solid solid hidden; border-width: thin; margin-left: 3em; }
+       .dice-example caption { width: 30em; font-size: smaller; font-style: italic; padding: 0.75em 0; text-align: left; }
+       .dice-example td, .dice-example th { border: solid thin; width: 1.35em; height: 1.05em; text-align: center; padding: 0; }
+
+       .toc dfn, h1 dfn, h2 dfn, h3 dfn, h4 dfn, h5 dfn, h6 dfn { font: inherit; }
+       img.extra, p.overview { float: right; }
+       pre.idl { border: solid thin #d3d3d3; background: #FCFCFC; color: black; padding: 0.5em 1em; position: relative; }
+       pre.idl :link, pre.idl :visited { color: inherit; background: transparent; }
+       pre.idl::before { content: "IDL"; font: bold small sans-serif; padding: 0.5em; background: white; position: absolute; top: 0; margin: -1px 0 0 -4em; width: 1.5em; border: thin solid; border-radius: 0 0 0 0.5em }
+       pre.css { border: solid thin; background: #FFFFEE; color: black; padding: 0.5em 1em; }
+       pre.css:first-line { color: #AAAA50; }
+       dl.domintro {padding: 0.5em 1em; border: none; background:#E9FBE9; border: 1px solid lightgray; }
+       hr + dl.domintro, div.impl + dl.domintro { margin-top: 2.5em; margin-bottom: 1.5em; }
+       dl.domintro dt, dl.domintro dt * { color: black; text-decoration: none; }
+       dl.domintro dd { margin: 0.5em 0 1em 2em; padding: 0; }
+       dl.domintro dd p { margin: 0.5em 0; }
+       dl.domintro:before { display: table; margin: -1em -0.5em -0.5em auto; width: auto; content: 'This definition is non-normative. Implementation requirements are given below this definition.'; color: #606060; border:1px solid lightgray; background: white; padding: 0 0.25em;font-size:.9em;}
+       dl.switch { padding-left: 2em; }
+       dl.switch > dt { text-indent: -1.5em; }
+       dl.switch > dt:before { content: '\21AA'; padding: 0 0.5em 0 0; display: inline-block; width: 1em; text-align: right; line-height: 0.5em; }
+       dl.triple { padding: 0 0 0 1em; }
+       dl.triple dt, dl.triple dd { margin: 0; display: inline }
+       dl.triple dt:after { content: ':'; }
+       dl.triple dd:after { content: '\A'; white-space: pre; }
+       .diff-old { text-decoration: line-through; color: silver; background: transparent; }
+       .diff-chg, .diff-new { text-decoration: underline; color: green; background: transparent; }
+       a .diff-new { border-bottom: 1px blue solid; }
+
+       figure.diagrams { border: double black; background: white; padding: 1em; }
+       figure.diagrams img { display: block; margin: 1em auto; } 
+
+       h2 { page-break-before: always; }
+       h1, h2, h3, h4, h5, h6 { page-break-after: avoid; }
+       h1 + h2, hr + h2.no-toc { page-break-before: auto; }
+
+       p  > span:not([title=""]):not([class="XXX"]):not([class="impl"]):not([class="note"]):not([class="t2"]):not([id]):not([lang]),
+       li > span:not([title=""]):not([class="XXX"]):not([class="impl"]):not([class="note"]):not([class="t2"]):not([id]):not([lang])
+       { border-bottom: solid #9999CC; }
+
+       div.head { margin: 0 0 1em; padding: 1em 0 0 0; }
+       div.head p { margin: 0; }
+       div.head h1 { margin: 0; }
+       div.head .logo { float: right; margin: 0 1em; }
+       div.head .logo img { border: none } /* remove border from top image */
+       div.head dl { margin: 1em 0; }
+       div.head p.copyright, div.head p.alt { font-size: x-small; font-style: oblique; margin: 0; }
+
+       body > .toc > li { margin-top: 1em; margin-bottom: 1em; }
+       body > .toc.brief > li { margin-top: 0.35em; margin-bottom: 0.35em; }
+       body > .toc > li > * { margin-bottom: 0.5em; }
+       body > .toc > li > * > li > * { margin-bottom: 0.25em; }
+       .toc, .toc li { list-style: none; }
+
+       .brief { margin-top: 1em; margin-bottom: 1em; line-height: 1.1; }
+       .brief li { margin: 0; padding: 0; }
+       .brief li p { margin: 0; padding: 0; }
+
+       .category-list { margin-top: -0.75em; margin-bottom: 1em; line-height: 1.5; }
+       .category-list::before { content: '\21D2\A0'; font-size: 1.2em; font-weight: 900; }
+       .category-list li { display: inline; }
+       .category-list li:not(:last-child)::after { content: ', '; }
+       .category-list li > span, .category-list li > a { text-transform: lowercase; }
+       .category-list li * { text-transform: none; } /* don't affect <code> nested in <a> */
+
+       .XXX { color: #E50000; background: white; border: solid red; padding: 0.5em; margin: 1em 0; }
+       .XXX > :first-child { margin-top: 0; }
+       p .XXX { line-height: 3em; }
+       .annotation { border: solid thin black; background: #0C479D; color: white; position: relative; margin: 8px 0 20px 0; }
+       .annotation:before { position: absolute; left: 0; top: 0; width: 100%; height: 100%; margin: 6px -6px -6px 6px; background: #333333; z-index: -1; content: ''; }
+       .annotation :link, .annotation :visited { color: inherit; }
+       .annotation :link:hover, .annotation :visited:hover { background: transparent; }
+       .annotation span { border: none ! important; }
+       .note { border-left-style: solid; border-left-width: 0.25em; background: none repeat scroll 0 0 #E9FBE9; border-color: #52E052; }
+       .warning { background-color: #F9F0D4; border: medium double #FF0000; margin: 1em; padding: 1em; }
+       .note em, .warning em, .note i, .warning i { font-style: normal; }
+       p.note, div.note { padding: 0.5em 2em; }
+       span.note { padding: 0 2em; }
+       .note p:first-child, .warning p:first-child { margin-top: 0; }
+       .note p:last-child, .warning p:last-child { margin-bottom: 0; }
+       .warning:before { font-style: normal; }
+       p.note:before { content: 'Note: '; font-weight: bolder;}
+       p.warning:before { content: '\26A0 Warning! '; font-weight:bolder;}
+       .critical {margin:1em; border:double red; padding:1em; background-color:#F9F0D4;}
+
+       .bookkeeping:before { display: block; content: 'Bookkeeping details'; font-weight: bolder; font-style: italic; }
+       .bookkeeping { font-size: 0.8em; margin: 2em 0; }
+       .bookkeeping p { margin: 0.5em 2em; display: list-item; list-style: square; }
+       .bookkeeping dt { margin: 0.5em 2em 0; }
+       .bookkeeping dd { margin: 0 3em 0.5em; }
+
+       h4 { position: relative; z-index: 3; }
+       h4 + .element, h4 + div + .element { margin-top: -2.5em; padding-top: 2em; }
+       .element {
+         background: #F4F4FA;
+         color: black;
+         margin: 0 0 1em 0.15em;
+         padding: 0 1em 0.25em 0.75em;
+         border-left: solid #9999FF 0.25em;
+         position: relative;
+         z-index: 1;
+       }
+       .element:before {
+         position: absolute;
+         z-index: 2;
+         top: 0;
+         left: -1.15em;
+         height: 2em;
+         width: 0.9em;
+         background: #F4F4FA;
+         content: ' ';
+         border-style: none none solid solid;
+         border-color: #9999FF;
+         border-width: 0.25em;
+       }
+
+       .example { display: block; color: #222222; background: #FCFCFC; border-left-style: solid;border-color:#c0c0c0; border-left-width: 0.25em; margin-left: 1em; padding-left: 1em;padding-bottom: 0.5em;}
+       div.example:before { content: 'Code Example: '; font-weight: bolder;}
+       td > .example:only-child { margin: 0 0 0 0.1em; }
+
+       ul.domTree, ul.domTree ul { padding: 0 0 0 1em; margin: 0; }
+       ul.domTree li { padding: 0; margin: 0; list-style: none; position: relative; }
+       ul.domTree li li { list-style: none; }
+       ul.domTree li:first-child::before { position: absolute; top: 0; height: 0.6em; left: -0.75em; width: 0.5em; border-style: none none solid solid; content: ''; border-width: 0.1em; }
+       ul.domTree li:not(:last-child)::after { position: absolute; top: 0; bottom: -0.6em; left: -0.75em; width: 0.5em; border-style: none none solid solid; content: ''; border-width: 0.1em; }
+       ul.domTree span { font-style: italic; font-family: serif; }
+       ul.domTree .t1 code { color: purple; font-weight: bold; }
+       ul.domTree .t2 { font-style: normal; font-family: monospace; }
+       ul.domTree .t2 .name { color: black; font-weight: bold; }
+       ul.domTree .t2 .value { color: blue; font-weight: normal; }
+       ul.domTree .t3 code, .domTree .t4 code, .domTree .t5 code { color: gray; }
+       ul.domTree .t7 code, .domTree .t8 code { color: green; }
+       ul.domTree .t10 code { color: teal; }
+
+       body.dfnEnabled dfn { cursor: pointer; }
+       .dfnPanel {
+         display: inline;
+         position: absolute;
+         z-index: 10;
+         height: auto;
+         width: auto;
+         padding: 0.5em 0.75em;
+         font: small sans-serif, Droid Sans Fallback;
+         background: #DDDDDD;
+         color: black;
+         border: outset 0.2em;
+       }
+       .dfnPanel * { margin: 0; padding: 0; font: inherit; text-indent: 0; }
+       .dfnPanel :link, .dfnPanel :visited { color: black; }
+       .dfnPanel p { font-weight: bolder; }
+       .dfnPanel * + p { margin-top: 0.25em; }
+       .dfnPanel li { list-style-position: inside; }
+
+       #configUI { position: absolute; z-index: 20; top: 10em; right: 1em; width: 11em; font-size: small; }
+       #configUI p { margin: 0.5em 0; padding: 0.3em; background: #EEEEEE; color: black; border: inset thin; }
+       #configUI p label { display: block; }
+       #configUI #updateUI, #configUI .loginUI { text-align: center; }
+       #configUI input[type=button] { display: block; margin: auto; }
+
+       fieldset { margin: 1em; padding: 0.5em 1em; }
+       fieldset > legend + * { margin-top: 0; }
+       fieldset > :last-child { margin-bottom: 0; }
+       fieldset p { margin: 0.5em 0; }
+       header p.subline {color:#005A9C; font: 140% sans-serif;margin: 0.75em 0;}
+       #authorButton {overflow: visible; padding: 0.1em 0.3em; position: fixed; right: 2em; top: 6em; width: auto;}
+
+       @media print {#authorButton { display:none;}}
+
+   .stability {
+     position: fixed;
+     bottom: 0;
+     left: 0; right: 0;
+     margin: 0 auto 0 auto;
+     width: 50%;
+     background: maroon; color: yellow;
+     -webkit-border-radius: 1em 1em 0 0;
+     -moz-border-radius: 1em 1em 0 0;
+     border-radius: 1em 1em 0 0;
+     -moz-box-shadow: 0 0 1em #500;
+     -webkit-box-shadow: 0 0 1em #500;
+     box-shadow: 0 0 1em red;
+     padding: 0.5em 1em;
+     text-align: center;
+   }
+   .stability strong {
+     display: block;
+   }
+   .stability input {
+     -moz-appearance: none; -webkit-appearance: none; margin: 0; 
+     border: 0; padding: 0.25em 0.5em; background: transparent; color: black;
+     position: absolute; top: -0.5em; right: 0; font: 1.25em sans-serif; text-align: center;
+   }
+   .stability input:hover {
+     color: white;
+     text-shadow: 0 0 2px black;
+   }
+   .stability input:active {
+     padding: 0.3em 0.45em 0.2em 0.55em;
+   }
+   .stability :link, .stability :visited,
+   .stability :link:hover, .stability :visited:hover {
+     background: transparent;
+     color: white;
+   }
+
+  </style><link href="http://www.w3.org/StyleSheets/TR/W3C-REC" rel="stylesheet" type="text/css"><script>
+   function getCookie(name) {
+     var params = location.search.substr(1).split("&");
+     for (var index = 0; index < params.length; index++) {
+       if (params[index] == name)
+         return "1";
+       var data = params[index].split("=");
+       if (data[0] == name)
+         return unescape(data[1]);
+     }
+     var cookies = document.cookie.split("; ");
+     for (var index = 0; index < cookies.length; index++) {
+       var data = cookies[index].split("=");
+       if (data[0] == name)
+         return unescape(data[1]);
+     }
+     return null;
+   }
+  </script><!-- style switcher script by Stommepoes  --><link href="switcher/author-view.css" id="author-view" rel="alternate stylesheet" title="Author documentation only"><script src="switcher/authorstylesheet.js"></script><link href="sections.html" rel="prev" title="4.3 Sections">
+  <link href="Overview.html#contents" rel="contents" title="Table of contents">
+  <link href="text-level-semantics.html" rel="next" title="4.5 Text-level semantics">
+  <body class="split chapter" onload="fixBrokenLink();"><div class="head" id="head">
+<header><span id="styleSwitch"></span>
+   <p><a href="http://www.w3.org/"><img alt="W3C" height="48" src="http://www.w3.org/Icons/w3c_home" width="72"></a></p>
+
+    <h1 id="big-title">HTML5</h1>
+    <p class="no-num no-toc subline">A vocabulary and associated APIs for HTML and XHTML</p>
+   <h2 class="no-num no-toc" id="w3c-recommendation-28-october-2014">W3C Recommendation 28 October 2014</h2>
+   </header></div>
+  
+
+  <nav class="prev_next">
+   <a href="sections.html">← 4.3 Sections</a> –
+   <a href="Overview.html#contents">Table of contents</a> –
+   <a href="text-level-semantics.html">4.5 Text-level semantics →</a>
+  <ol class="toc"><li><ol><li><a href="grouping-content.html#grouping-content"><span class="secno">4.4 </span>Grouping content</a>
+    <ol><li><a href="grouping-content.html#the-p-element"><span class="secno">4.4.1 </span>The <code>p</code> element</a><li><a href="grouping-content.html#the-hr-element"><span class="secno">4.4.2 </span>The <code>hr</code> element</a><li><a href="grouping-content.html#the-pre-element"><span class="secno">4.4.3 </span>The <code>pre</code> element</a><li><a href="grouping-content.html#the-blockquote-element"><span class="secno">4.4.4 </span>The <code>blockquote</code> element</a><li><a href="grouping-content.html#the-ol-element"><span class="secno">4.4.5 </span>The <code>ol</code> element</a><li><a href="grouping-content.html#the-ul-element"><span class="secno">4.4.6 </span>The <code>ul</code> element</a><li><a href="grouping-content.html#the-li-element"><span class="secno">4.4.7 </span>The <code>li</code> element</a><li><a href="grouping-content.html#the-dl-element"><span class="secno">4.4.8 </span>The <code>dl</code> element</a><li><a href="grouping-content.html#the-dt-element"><span class="secno">4.4.9 </span>The <code>dt</code> element</a><li><a href="grouping-content.html#the-dd-element"><span class="secno">4.4.10 </span>The <code>dd</code> element</a><li><a href="grouping-content.html#the-figure-element"><span class="secno">4.4.11 </span>The <code>figure</code> element</a><li><a href="grouping-content.html#the-figcaption-element"><span class="secno">4.4.12 </span>The <code>figcaption</code> element</a><li><a href="grouping-content.html#the-div-element"><span class="secno">4.4.13 </span>The <code>div</code> element</a><li><a href="grouping-content.html#the-main-element"><span class="secno">4.4.14 </span>The <code>main</code> element</a></ol></ol></ol></nav>
+
+  <h3 id="grouping-content"><span class="secno">4.4 </span>Grouping content</h3>
+
+  <h4 id="the-p-element"><span class="secno">4.4.1 </span>The <dfn><code>p</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dd><a href="dom.html#palpable-content-0">Palpable content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd><a href="dom.html#phrasing-content-1">Phrasing content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd><p>A <code><a href="#the-p-element">p</a></code> element's <a data-anolis-xref="syntax-end-tag" href="syntax.html#syntax-end-tag">end tag</a> may be omitted if the
+  <code><a href="#the-p-element">p</a></code> element is immediately followed by an <code><a href="sections.html#the-address-element">address</a></code>, <code><a href="sections.html#the-article-element">article</a></code>,
+  <code><a href="sections.html#the-aside-element">aside</a></code>, <code><a href="#the-blockquote-element">blockquote</a></code>, <code><a href="#the-div-element">div</a></code>, <code><a href="#the-dl-element">dl</a></code>,
+  <code><a href="forms.html#the-fieldset-element">fieldset</a></code>, <code><a href="sections.html#the-footer-element">footer</a></code>, <code><a href="forms.html#the-form-element">form</a></code>, <code><a href="sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h1</a></code>, <code><a href="sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h2</a></code>,
+  <code><a href="sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h3</a></code>, <code><a href="sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h4</a></code>, <code><a href="sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h5</a></code>, <code><a href="sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h6</a></code>, <code><a href="sections.html#the-header-element">header</a></code>,
+  <code><a href="obsolete.html#hgroup">hgroup</a></code>, <code><a href="#the-hr-element">hr</a></code>, <code><a href="#the-main-element">main</a></code>, <code><a href="sections.html#the-nav-element">nav</a></code>,
+  <code><a href="#the-ol-element">ol</a></code>, <code><a href="#the-p-element">p</a></code>, <code><a href="#the-pre-element">pre</a></code>, <code><a href="sections.html#the-section-element">section</a></code>, <code><a href="tabular-data.html#the-table-element">table</a></code>, or
+  <code><a href="#the-ul-element">ul</a></code>, element, or if there is no more content in the parent element and the parent
+  element is not an <code><a href="text-level-semantics.html#the-a-element">a</a></code> element.</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#allowed-aria-roles,-states-and-properties">Any role value</a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+  <dd>Any <code title="">aria-*</code> attributes <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+    <pre class="idl">interface <dfn id="htmlparagraphelement">HTMLParagraphElement</dfn> : <a href="dom.html#htmlelement">HTMLElement</a> {};</pre>
+   </dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-p-element">p</a></code> element <a href="dom.html#represents">represents</a> a <a href="dom.html#paragraph">paragraph</a>.</p>
+
+  <p class="note">While paragraphs are usually represented in visual media by blocks of text that
+  are physically separated from adjacent blocks through blank lines, a style sheet or user agent
+  would be equally justified in presenting paragraph breaks in a different manner, for instance
+  using inline pilcrows (¶).</p>
+
+  <div class="example">
+   <p>The following examples are conforming HTML fragments:</p>
+   <pre>&lt;p&gt;The little kitten gently seated himself on a piece of
+carpet. Later in his life, this would be referred to as the time the
+cat sat on the mat.&lt;/p&gt;</pre>
+   <pre>&lt;fieldset&gt;
+ &lt;legend&gt;Personal information&lt;/legend&gt;
+ &lt;p&gt;
+   &lt;label&gt;Name: &lt;input name="n"&gt;&lt;/label&gt;
+   &lt;label&gt;&lt;input name="anon" type="checkbox"&gt; Hide from other users&lt;/label&gt;
+ &lt;/p&gt;
+ &lt;p&gt;&lt;label&gt;Address: &lt;textarea name="a"&gt;&lt;/textarea&gt;&lt;/label&gt;&lt;/p&gt;
+&lt;/fieldset&gt;</pre>
+   <pre>&lt;p&gt;There was once an example from Femley,&lt;br&gt;
+Whose markup was of dubious quality.&lt;br&gt;
+The validator complained,&lt;br&gt;
+So the author was pained,&lt;br&gt;
+To move the error from the markup to the rhyming.&lt;/p&gt;</pre>
+  </div>
+
+  <p class="auth">The <code><a href="#the-p-element">p</a></code> element should not be used when a more specific element is more
+  appropriate.</p>
+
+  <div class="example">
+
+   <p>The following example is technically correct:</p>
+
+<pre>&lt;section&gt;
+ &lt;!-- ... --&gt;
+ &lt;p&gt;Last modified: 2001-04-23&lt;/p&gt;
+ &lt;p&gt;Author: fred@example.com&lt;/p&gt;
+&lt;/section&gt;</pre>
+
+   <p>However, it would be better marked-up as:</p>
+
+<pre>&lt;section&gt;
+ &lt;!-- ... --&gt;
+ &lt;footer&gt;Last modified: 2001-04-23&lt;/footer&gt;
+ &lt;address&gt;Author: fred@example.com&lt;/address&gt;
+&lt;/section&gt;</pre>
+
+   <p>Or:</p>
+
+<pre>&lt;section&gt;
+ &lt;!-- ... --&gt;
+ &lt;footer&gt;
+  &lt;p&gt;Last modified: 2001-04-23&lt;/p&gt;
+  &lt;address&gt;Author: fred@example.com&lt;/address&gt;
+ &lt;/footer&gt;
+&lt;/section&gt;</pre>
+
+  </div>
+
+  <div class="note">
+
+   <p>List elements (in particular, <code><a href="#the-ol-element">ol</a></code> and <code><a href="#the-ul-element">ul</a></code> elements) cannot be children
+   of <code><a href="#the-p-element">p</a></code> elements. When a sentence contains a bulleted list, therefore, one might wonder
+   how it should be marked up.</p>
+
+   <div class="example">
+    <p>For instance, this fantastic sentence has bullets relating to</p>
+    <ul><li>wizards,
+     <li>faster-than-light travel, and
+     <li>telepathy,
+    </ul><p>and is further discussed below.</p>
+   </div>
+
+   <p>The solution is to realise that a <i><a href="dom.html#paragraph">paragraph</a></i>, in HTML terms, is not a logical concept,
+   but a structural one. In the fantastic example above, there are actually <em>five</em> <a data-anolis-xref="paragraph" href="dom.html#paragraph">paragraphs</a> as defined by this specification: one before the list, one
+   for each bullet, and one after the list.</p>
+
+   <div class="example">
+
+    <p>The markup for the above example could therefore be:</p>
+
+    <pre>&lt;p&gt;For instance, this fantastic sentence has bullets relating to&lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;wizards,
+ &lt;li&gt;faster-than-light travel, and
+ &lt;li&gt;telepathy,
+&lt;/ul&gt;
+&lt;p&gt;and is further discussed below.&lt;/p&gt;</pre>
+
+   </div>
+
+   <p>Authors wishing to conveniently style such "logical" paragraphs consisting of multiple
+   "structural" paragraphs can use the <code><a href="#the-div-element">div</a></code> element instead of the <code><a href="#the-p-element">p</a></code>
+   element.</p>
+
+   <div class="example">
+
+    <p>Thus for instance the above example could become the following:</p>
+
+    <pre>&lt;div&gt;For instance, this fantastic sentence has bullets relating to
+&lt;ul&gt;
+ &lt;li&gt;wizards,
+ &lt;li&gt;faster-than-light travel, and
+ &lt;li&gt;telepathy,
+&lt;/ul&gt;
+and is further discussed below.&lt;/div&gt;</pre>
+
+    <p>This example still has five structural paragraphs, but now the author can style just the
+    <code><a href="#the-div-element">div</a></code> instead of having to consider each part of the example separately.</p>
+
+   </div>
+
+  </div>
+
+  <h4 id="the-hr-element"><span class="secno">4.4.2 </span>The <dfn><code>hr</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd>Empty.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>No <a data-anolis-xref="syntax-end-tag" href="syntax.html#syntax-end-tag">end tag</a>.</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#index-aria-separator"><code title="">separator</code></a> (default - <a href="dom.html#aria-usage-note"><em>do not set</em></a>) or <a href="dom.html#index-aria-presentation"><code title="">presentation</code></a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+    <pre class="idl">interface <dfn id="htmlhrelement">HTMLHRElement</dfn> : <a href="dom.html#htmlelement">HTMLElement</a> {};</pre>
+   </dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-hr-element">hr</a></code> element <a href="dom.html#represents">represents</a> a <a href="dom.html#paragraph">paragraph</a>-level thematic
+  break, e.g. a scene change in a story, or a transition to another topic within a section of a
+  reference book.</p>
+
+  <div class="example">
+
+   <p>The following fictional extract from a project manual shows two sections that use the
+   <code><a href="#the-hr-element">hr</a></code> element to separate topics within the section.</p>
+
+   <pre>&lt;section&gt;
+ &lt;h1&gt;Communication&lt;/h1&gt;
+ &lt;p&gt;There are various methods of communication. This section
+ covers a few of the important ones used by the project.&lt;/p&gt;
+ <strong><a href="#the-hr-element">&lt;hr&gt;</a></strong>
+ &lt;p&gt;Communication stones seem to come in pairs and have mysterious
+ properties:&lt;/p&gt;
+ &lt;ul&gt;
+  &lt;li&gt;They can transfer thoughts in two directions once activated
+  if used alone.&lt;/li&gt;
+  &lt;li&gt;If used with another device, they can transfer one's
+  consciousness to another body.&lt;/li&gt;
+  &lt;li&gt;If both stones are used with another device, the
+  consciousnesses switch bodies.&lt;/li&gt;
+ &lt;/ul&gt;
+ <strong><a href="#the-hr-element">&lt;hr&gt;</a></strong>
+ &lt;p&gt;Radios use the electromagnetic spectrum in the meter range and
+ longer.&lt;/p&gt;
+ <strong><a href="#the-hr-element">&lt;hr&gt;</a></strong>
+ &lt;p&gt;Signal flares use the electromagnetic spectrum in the
+ nanometer range.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section&gt;
+ &lt;h1&gt;Food&lt;/h1&gt;
+ &lt;p&gt;All food at the project is rationed:&lt;/p&gt;
+ &lt;dl&gt;
+  &lt;dt&gt;Potatoes&lt;/dt&gt;
+  &lt;dd&gt;Two per day&lt;/dd&gt;
+  &lt;dt&gt;Soup&lt;/dt&gt;
+  &lt;dd&gt;One bowl per day&lt;/dd&gt;
+ &lt;/dl&gt;
+ <strong><a href="#the-hr-element">&lt;hr&gt;</a></strong>
+ &lt;p&gt;Cooking is done by the chefs on a set rotation.&lt;/p&gt;
+&lt;/section&gt;</pre>
+
+<!--CLEANUP-->
+   <p>There is no need for an <code><a href="#the-hr-element">hr</a></code> element between the
+   sections themselves, since the <code><a href="sections.html#the-section-element">section</a></code> elements and
+   the <code><a href="sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h1</a></code> elements imply thematic changes themselves.</p>
+
+  </div>
+
+  <div class="example">
+
+   <p>The following extract from <cite>Pandora's Star</cite> by Peter
+   F. Hamilton shows two paragraphs that precede a scene change and
+   the paragraph that follows it. The scene change, represented in the
+   printed book by a gap containing a solitary centered star between
+   the second and third paragraphs, is here represented using the
+   <code><a href="#the-hr-element">hr</a></code> element.</p>
+
+   <!-- ISBN 1-4050-0020-1; bottom of page 14 -->
+
+   <pre lang="en-GB">&lt;p&gt;Dudley was ninety-two, in his second life, and fast approaching
+time for another rejuvenation. Despite his body having the physical
+age of a standard fifty-year-old, the prospect of a long degrading
+campaign within academia was one he regarded with dread. For a
+supposedly advanced civilization, the Intersolar Commonwealth could be
+appallingly backward at times, not to mention cruel.&lt;/p&gt;
+&lt;p&gt;&lt;i&gt;Maybe it won't be that bad&lt;/i&gt;, he told himself. The lie was
+comforting enough to get him through the rest of the night's
+shift.&lt;/p&gt;
+<strong><a href="#the-hr-element">&lt;hr&gt;</a></strong>
+&lt;p&gt;The Carlton AllLander drove Dudley home just after dawn. Like the
+astronomer, the vehicle was old and worn, but perfectly capable of
+doing its job. It had a cheap diesel engine, common enough on a
+semi-frontier world like Gralmond, although its drive array was a
+thoroughly modern photoneural processor. With its high suspension and
+deep-tread tyres it could plough along the dirt track to the
+observatory in all weather and seasons, including the metre-deep snow
+of Gralmond's winters.&lt;/p&gt;</pre>
+
+  </div>
+
+  <p class="note">The <code><a href="#the-hr-element">hr</a></code> element does not affect the
+  document's <a href="sections.html#outline">outline</a>.</p>
+
+
+  <h4 id="the-pre-element"><span class="secno">4.4.3 </span>The <dfn><code>pre</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dd><a href="dom.html#palpable-content-0">Palpable content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd><a href="dom.html#phrasing-content-1">Phrasing content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>Neither tag is omissible</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#allowed-aria-roles,-states-and-properties">Any role value</a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+  <dd>Any <code title="">aria-*</code> attributes <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+    <pre class="idl">interface <dfn id="htmlpreelement">HTMLPreElement</dfn> : <a href="dom.html#htmlelement">HTMLElement</a> {};</pre>
+   </dd>
+  </dl><!--TOPIC:HTML--><!--CLEANUP--><p>The <code><a href="#the-pre-element">pre</a></code> element <a href="dom.html#represents">represents</a> a block of
+  preformatted text, in which structure is represented by typographic
+  conventions rather than by elements.</p>
+
+  <p class="note">In <a href="syntax.html#syntax">the HTML syntax</a>, a leading
+  newline character immediately following the <code><a href="#the-pre-element">pre</a></code> element
+  start tag is stripped.</p>
+
+  <p>Some examples of cases where the <code><a href="#the-pre-element">pre</a></code> element could
+  be used:</p>
+
+  <ul><li>Including an e-mail, with paragraphs indicated by blank lines,
+   lists indicated by lines prefixed with a bullet, and so on.</li>
+
+   <li>Including fragments of computer code, with structure indicated
+   according to the conventions of that language.</li>
+
+   <li>Displaying ASCII art.</li>
+
+  </ul><p class="note">Authors are encouraged to consider how preformatted
+  text will be experienced when the formatting is lost, as will be the
+  case for users of speech synthesizers, braille displays, and the
+  like. For cases like ASCII art, it is likely that an alternative
+  presentation, such as a textual description, would be more
+  universally accessible to the readers of the document.</p>
+
+  <p>To represent a block of computer code, the <code><a href="#the-pre-element">pre</a></code>
+  element can be used with a <code><a href="text-level-semantics.html#the-code-element">code</a></code> element; to represent a
+  block of computer output the <code><a href="#the-pre-element">pre</a></code> element can be used
+  with a <code><a href="text-level-semantics.html#the-samp-element">samp</a></code> element. Similarly, the <code><a href="text-level-semantics.html#the-kbd-element">kbd</a></code>
+  element can be used within a <code><a href="#the-pre-element">pre</a></code> element to indicate
+  text that the user is to enter.</p>
+
+  <div class="impl">
+
+  <p class="note">This element <a href="dom.html#bidireq">has rendering requirements involving the
+  bidirectional algorithm</a>.</p>
+
+  </div>
+
+ <div class="example">
+
+   <p>In the following snippet, a sample of computer code is
+   presented.</p>
+
+   <pre>&lt;p&gt;This is the &lt;code&gt;Panel&lt;/code&gt; constructor:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function Panel(element, canClose, closeHandler) {
+  this.element = element;
+  this.canClose = canClose;
+  this.closeHandler = function () { if (closeHandler) closeHandler() };
+}&lt;/code&gt;&lt;/pre&gt;</pre>
+
+  </div>
+
+  <div class="example">
+
+   <p>In the following snippet, <code><a href="text-level-semantics.html#the-samp-element">samp</a></code> and <code><a href="text-level-semantics.html#the-kbd-element">kbd</a></code>
+   elements are mixed in the contents of a <code><a href="#the-pre-element">pre</a></code> element to
+   show a session of Zork I.</p>
+
+   <pre>&lt;pre&gt;&lt;samp&gt;You are in an open field west of a big white house with a boarded
+front door.
+There is a small mailbox here.
+
+&gt;&lt;/samp&gt; &lt;kbd&gt;open mailbox&lt;/kbd&gt;
+
+&lt;samp&gt;Opening the mailbox reveals:
+A leaflet.
+
+&gt;&lt;/samp&gt;&lt;/pre&gt;</pre>
+
+  </div>
+
+  <div class="example">
+
+   <p>The following shows a contemporary poem that uses the
+   <code><a href="#the-pre-element">pre</a></code> element to preserve its unusual formatting, which
+   forms an intrinsic part of the poem itself.</p>
+
+   <pre>&lt;pre&gt;                maxling
+
+it is with a          heart
+               heavy
+
+that i admit loss of a feline
+        so           loved
+
+a friend lost to the
+        unknown
+                                (night)
+
+~cdr 11dec07&lt;/pre&gt;</pre>
+
+  </div>
+
+
+  <h4 id="the-blockquote-element"><span class="secno">4.4.4 </span>The <dfn><code>blockquote</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dd><a href="sections.html#sectioning-root">Sectioning root</a>.</dd>
+   <dd><a href="dom.html#palpable-content-0">Palpable content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dd><code data-anolis-xref="attr-blockquote-cite"><a href="#attr-blockquote-cite">cite</a></code> - Link to the source of the quotation.</dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>Neither tag is omissible</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#allowed-aria-roles,-states-and-properties">Any role value</a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+<pre class="idl">interface <dfn id="htmlquoteelement">HTMLQuoteElement</dfn> : <a href="dom.html#htmlelement">HTMLElement</a> {
+           attribute DOMString <a data-anolis-xref="dom-quote-cite" href="#dom-quote-cite">cite</a>;
+};</pre>
+    <p class="note">The <code><a href="#htmlquoteelement">HTMLQuoteElement</a></code> interface is
+    also used by the <code><a href="text-level-semantics.html#the-q-element">q</a></code> element.</p>
+   </dd>
+  </dl><!--TOPIC:HTML--><p class="rep">The <code><a href="#the-blockquote-element">blockquote</a></code> element <a href="dom.html#represents">represents</a> content that is quoted from another source, optionally with a citation which must be within a <code><a href="sections.html#the-footer-element">footer</a></code> or <code><a href="text-level-semantics.html#the-cite-element">cite</a></code> element, and optionally 
+  with in-line changes such as annotations and abbreviations.</p>
+
+  <p class="auth">Content inside a <code><a href="#the-blockquote-element">blockquote</a></code> other than citations and in-line changes must be quoted from another source, whose address, if it has one, may be cited in the <dfn data-anolis-xref="attr-blockquote-cite" id="attr-blockquote-cite"><code>cite</code></dfn> attribute.</p>
+  
+ <p class="note">In cases where a page contains contributions from multiple people, such as comments on a blog post, 
+ '<i>another source</i>' can include text from the same page, written by another person.</p>
+ 
+  <p class="auth">If the <code data-anolis-xref="attr-blockquote-cite"><a href="#attr-blockquote-cite">cite</a></code> attribute is present, it must be a
+  <a href="infrastructure.html#valid-url-potentially-surrounded-by-spaces">valid URL potentially surrounded by spaces</a>. <span class="impl">To obtain the
+  corresponding citation link, the value of the attribute must be <a data-anolis-xref="resolve a
+  url" href="infrastructure.html#resolve-a-url">resolved</a> relative to the element.</span> User agents may allow users to follow such
+  citation links, but they are primarily intended for private use (e.g. by server-side scripts
+  collecting statistics about a site's use of quotations), not for readers.</p>
+<div class="impl">
+<p>The <dfn data-anolis-xref="dom-quote-cite" id="dom-quote-cite"><code>cite</code></dfn> IDL
+  attribute must <a href="infrastructure.html#reflect">reflect</a> the element's <code data-anolis-xref="">cite</code> content attribute.</p>
+  </div>
+  <p class="auth">The content of a <code><a href="#the-blockquote-element">blockquote</a></code> may be abbreviated, may have context added or may have annotations. Any such additions or changes to quoted text must be indicated in the text (at the text level). This may mean the use of notational conventions or explicit remarks, such as "emphasis mine".</p>
+
+  <div class="example">
+
+   <p>For example, in English, abbreviations are traditionally identified using square
+   brackets. Consider a page with the sentence "Fred ate the cracker.
+   He then said he liked apples and fish."; it could be quoted as
+   follows:</p>
+
+   <pre>&lt;blockquote&gt;
+ &lt;p&gt;[Fred] then said he liked [...] fish.&lt;/p&gt;
+&lt;/blockquote&gt;</pre>
+
+  </div>
+  <p class="auth">Quotation marks may be used to delineate between quoted text and annotations 
+  within a <code><a href="#the-blockquote-element">blockquote</a></code>.
+<div class="example">
+<!-- based on example from http://oli.jp/example/blockquote-metadata/ -->
+   <p>For example, an in-line note provided by the author:</p>
+
+   <pre> &lt;figure&gt;
+ &lt;blockquote&gt;
+ "That monster custom, who all sense doth eat
+ Of habit's devil," <mark>&lt;abbr title="et cetera"&gt;&amp;c.&lt;/abbr&gt; not in Folio</mark>
+ 
+ "What a falling off was there !
+ From me, whose love was of that dignity
+ That it went hand in hand even with the vow
+ I made to her in marriage, and to decline
+ Upon a wretch."
+ &lt;/blockquote&gt;
+ &lt;footer&gt;
+ — &lt;cite class="title"&gt;Shakespeare manual&lt;/cite&gt; by &lt;cite class="author"&gt;Frederick Gard Fleay&lt;/cite&gt;, 
+ p19 (in Google Books)
+ &lt;/footer&gt;
+ &lt;/figure&gt;
+ </pre>
+<p class="note">In the example above, the citation is contained within the <code><a href="sections.html#the-footer-element">footer</a></code> of a <code><a href="#the-figure-element">figure</a></code> element,
+this groups and associates the information, about the quote, with the quote. The <code><a href="#the-figcaption-element">figcaption</a></code> element was not
+used, in this case, as a container for the citation as it is not a caption.</p> 
+ </div>
+  <p>Attribution for the quotation, may be be placed inside the
+  <code><a href="#the-blockquote-element">blockquote</a></code> element, but must be within a <code><a href="text-level-semantics.html#the-cite-element">cite</a></code> element for in-text attributions or within a <code><a href="sections.html#the-footer-element">footer</a></code> element.</p> 
+
+  <div class="example">
+
+   <p>For example, here the attribution is given in a <code><a href="sections.html#the-footer-element">footer</a></code> after
+   the quoted text, to clearly relate the quote to its attribution:</p>
+
+   <pre>&lt;blockquote&gt;
+ &lt;p&gt;I contend that we are both atheists. I just believe in one fewer
+ god than you do. When you understand why you dismiss all the other
+ possible gods, you will understand why I dismiss yours.&lt;/p&gt;
+ &lt;footer&gt;— &lt;cite&gt;Stephen Roberts&lt;/cite&gt;&lt;/footer&gt;
+ &lt;/blockquote&gt;</pre>
+
+  </div>
+  
+   <div class="example">
+
+   <p>Here the attribution is given in a <code><a href="text-level-semantics.html#the-cite-element">cite</a></code> element on the last line of the quoted text. 
+   Note that a link to the author is also included.</p>
+
+   <pre>&lt;blockquote&gt;
+ The people recognize themselves in their commodities; they find their 
+ soul in their automobile, hi-fi set, split-level home, kitchen equipment. 
+ — <strong>&lt;cite&gt;&lt;a href="http://en.wikipedia.org/wiki/Herbert_Marcuse"&gt;Herbert Marcuse&lt;/a&gt;&lt;/cite&gt;</strong>
+ &lt;/blockquote&gt;</pre>
+
+  </div>
+  
+  <div class="example">
+
+   <p>Here the attribution is given in a <code><a href="sections.html#the-footer-element">footer</a></code> after
+   the quoted text, and metadata about the reference has been added using the
+   <a href="http://www.w3.org/TR/microdata/">Microdata</a> syntax
+   (note it could have equally been marked up using <a href="http://www.w3.org/TR/rdfa-lite/">RDFA Lite</a>).</p>
+
+   <pre>&lt;blockquote&gt;
+ &lt;p&gt;... she said she would not sign any deposition containing the word "amorous" 
+ instead of "advances". For her the difference was of crucial significance, 
+ and one of the reasons she had separated from her husband was that he had never been 
+ amorous but had consistently made advances.&lt;/p&gt;
+ 
+ <strong>&lt;footer itemscope itemtype="http://schema.org/Book"&gt;</strong>
+  &lt;span itemprop="author"&gt;Heinrich Böll&lt;/span&gt;,
+  &lt;span itemprop="name"&gt;The Lost Honor of Katharina Blum&lt;/span&gt;, 
+  &lt;span itemprop="datePublished"&gt;January 1, 1974&lt;/span&gt;
+ <strong>&lt;/footer&gt;</strong>
+ &lt;/blockquote&gt;
+ </pre>
+
+  </div>
+  <p class="note">There is no formal method for indicating the markup in a <code><a href="#the-blockquote-element">blockquote</a></code> is from a quoted source. It is suggested that if the <code><a href="sections.html#the-footer-element">footer</a></code> or <code><a href="text-level-semantics.html#the-cite-element">cite</a></code> elements are included and these elements are also being used within a <code><a href="#the-blockquote-element">blockquote</a></code> to identify citations, the elements from the quoted source could be annotated with metadata to identify their origin, for example by using the <code>class</code> attribute (a defined <span>extensibility</span> mechanism).</p>
+  <div class="example">
+  <p>In this example the source of a quote includes a <code><a href="text-level-semantics.html#the-cite-element">cite</a></code> element, which is annotated using the <code>class</code> attribute:</p>
+  <pre>  &lt;blockquote&gt;
+  &lt;p&gt;My favorite book is <mark>&lt;cite class="from-source"&gt;At Swim-Two-Birds&lt;/cite&gt;</mark>&lt;/p&gt;
+  &lt;footer&gt;- &lt;cite&gt;Mike[tm]Smith&lt;/cite&gt;&lt;/footer&gt;
+  &lt;/blockquote&gt;
+  </pre>
+  </div>
+  
+ <p class="author">The other examples below show other ways of showing attribution.</p>
+ 
+ <div class="example">
+
+   <p>Here a <code><a href="#the-blockquote-element">blockquote</a></code> element is used in conjunction
+   with a <code><a href="#the-figure-element">figure</a></code> element and its <code><a href="#the-figcaption-element">figcaption</a></code>:</p>
+
+   <pre>&lt;figure&gt;
+ &lt;blockquote&gt;
+  &lt;p&gt;The truth may be puzzling. It may take some work to grapple with.
+  It may be counterintuitive. It may contradict deeply held
+  prejudices. It may not be consonant with what we desperately want to
+  be true. But our preferences do not determine what's true. We have a
+  method, and that method helps us to reach not absolute truth, only
+  asymptotic approaches to the truth — never there, just closer
+  and closer, always finding vast new oceans of undiscovered
+  possibilities. Cleverly designed experiments are the key.&lt;/p&gt;
+ &lt;/blockquote&gt;
+ &lt;figcaption&gt;&lt;cite&gt;Carl Sagan&lt;/cite&gt;, in "&lt;cite&gt;Wonder and Skepticism&lt;/cite&gt;", from
+ the &lt;cite&gt;Skeptical Enquirer&lt;/cite&gt; Volume 19, Issue 1 (January-February
+ 1995)&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+
+  </div>
+
+  <div class="example">
+  
+   <p>This next example shows the use of <code><a href="text-level-semantics.html#the-cite-element">cite</a></code> alongside
+   <code><a href="#the-blockquote-element">blockquote</a></code>:</p>
+
+   <pre>&lt;p&gt;His next piece was the aptly named &lt;cite&gt;Sonnet 130&lt;/cite&gt;:&lt;/p&gt;
+&lt;blockquote cite="http://quotes.example.org/s/sonnet130.html"&gt;
+  &lt;p&gt;My mistress' eyes are nothing like the sun,&lt;br&gt;
+  Coral is far more red, than her lips red,&lt;br&gt;
+  ...</pre>
+  </div>
+  
+  <div class="example">
+
+   <p>This example shows how a forum post could use
+   <code><a href="#the-blockquote-element">blockquote</a></code> to show what post a user is replying
+   to. The <code><a href="sections.html#the-article-element">article</a></code> element is used for each post, to mark
+   up the threading.</p>
+
+   <pre>&lt;article&gt;
+ &lt;h1&gt;&lt;a href="http://bacon.example.com/?blog=109431"&gt;Bacon on a crowbar&lt;/a&gt;&lt;/h1&gt;
+ &lt;article&gt;
+  &lt;header&gt;&lt;strong&gt;t3yw&lt;/strong&gt; 12 points 1 hour ago&lt;/header&gt;
+  &lt;p&gt;I bet a narwhal would love that.&lt;/p&gt;
+  &lt;footer&gt;&lt;a href="?pid=29578"&gt;permalink&lt;/a&gt;&lt;/footer&gt;
+  &lt;article&gt;
+   &lt;header&gt;&lt;strong&gt;greg&lt;/strong&gt; 8 points 1 hour ago&lt;/header&gt;
+   &lt;blockquote&gt;&lt;p&gt;I bet a narwhal would love that.&lt;/p&gt;&lt;/blockquote&gt;
+   &lt;p&gt;Dude narwhals don't eat bacon.&lt;/p&gt;
+   &lt;footer&gt;&lt;a href="?pid=29579"&gt;permalink&lt;/a&gt;&lt;/footer&gt;
+   &lt;article&gt;
+    &lt;header&gt;&lt;strong&gt;t3yw&lt;/strong&gt; 15 points 1 hour ago&lt;/header&gt;
+    &lt;blockquote&gt;
+     &lt;blockquote&gt;&lt;p&gt;I bet a narwhal would love that.&lt;/p&gt;&lt;/blockquote&gt;
+     &lt;p&gt;Dude narwhals don't eat bacon.&lt;/p&gt;
+    &lt;/blockquote&gt;
+    &lt;p&gt;Next thing you'll be saying they don't get capes and wizard
+    hats either!&lt;/p&gt;
+    &lt;footer&gt;&lt;a href="?pid=29580"&gt;permalink&lt;/a&gt;&lt;/footer&gt;
+    &lt;article&gt;
+     &lt;article&gt;
+      &lt;header&gt;&lt;strong&gt;boing&lt;/strong&gt; -5 points 1 hour ago&lt;/header&gt;
+      &lt;p&gt;narwhals are worse than ceiling cat&lt;/p&gt;
+      &lt;footer&gt;&lt;a href="?pid=29581"&gt;permalink&lt;/a&gt;&lt;/footer&gt;
+     &lt;/article&gt;
+    &lt;/article&gt;
+   &lt;/article&gt;
+  &lt;/article&gt;
+  &lt;article&gt;
+   &lt;header&gt;&lt;strong&gt;fred&lt;/strong&gt; 1 points 23 minutes ago&lt;/header&gt;
+   &lt;blockquote&gt;&lt;p&gt;I bet a narwhal would love that.&lt;/p&gt;&lt;/blockquote&gt;
+   &lt;p&gt;I bet they'd love to peel a banana too.&lt;/p&gt;
+   &lt;footer&gt;&lt;a href="?pid=29582"&gt;permalink&lt;/a&gt;&lt;/footer&gt;
+  &lt;/article&gt;
+ &lt;/article&gt;
+&lt;/article&gt;</pre>
+
+  </div>
+
+  <div class="example">
+
+   <p>This example shows the use of a <code><a href="#the-blockquote-element">blockquote</a></code> for
+   short snippets, demonstrating that one does not have to use
+   <code><a href="#the-p-element">p</a></code> elements inside <code><a href="#the-blockquote-element">blockquote</a></code>
+   elements:</p>
+
+   <pre>&lt;p&gt;He began his list of "lessons" with the following:&lt;/p&gt;
+&lt;blockquote&gt;One should never assume that his side of 
+the issue will be recognized, let alone that it will 
+be conceded to have merits.&lt;/blockquote&gt;
+&lt;p&gt;He continued with a number of similar points, ending with:&lt;/p&gt;
+&lt;blockquote&gt;Finally, one should be prepared for the threat 
+of breakdown in negotiations at any given moment and not 
+be cowed by the possibility.&lt;/blockquote&gt;
+&lt;p&gt;We shall now discuss these points...</pre>
+
+  </div>
+  <p class="note"><a href="common-idioms.html#conversations">Examples of how to
+  represent a conversation</a> are shown in a later section; it is not
+  appropriate to use the <code><a href="text-level-semantics.html#the-cite-element">cite</a></code> and <code><a href="#the-blockquote-element">blockquote</a></code>
+  elements for this purpose.</p>
+
+
+
+  <h4 id="the-ol-element"><span class="secno">4.4.5 </span>The <dfn><code>ol</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dd>If the element's children include at least one <code><a href="#the-li-element">li</a></code> element: <a href="dom.html#palpable-content-0">Palpable content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd>Zero or more <code><a href="#the-li-element">li</a></code> and <a data-anolis-xref="script-supporting elements" href="dom.html#script-supporting-elements-0">script-supporting</a> elements.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dd><code data-anolis-xref="attr-ol-reversed"><a href="#attr-ol-reversed">reversed</a></code> - Number the list backwards.</dd>
+   <dd><code data-anolis-xref="attr-ol-start"><a href="#attr-ol-start">start</a></code> - <a href="#ordinal-value">Ordinal value</a> of the first item </dd>
+   <dd><code data-anolis-xref="attr-ol-type"><a href="#attr-ol-type">type</a></code> - Kind of list marker.</dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>Neither tag is omissible</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#index-aria-list"><code title="">list</code></a> role (default - <a href="dom.html#aria-usage-note"><em>do not set</em></a>), <a href="dom.html#index-aria-directory"><code title="">directory</code></a>,  <a href="dom.html#index-aria-listbox"><code title="">listbox</code></a>, <a href="dom.html#index-aria-menu"><code title="">menu</code></a>, <a href="dom.html#index-aria-menubar"><code title="">menubar</code></a>, <a href="dom.html#index-aria-presentation"><code title="">presentation</code></a>, <a href="dom.html#index-aria-tablist"><code title="">tablist</code></a>, <a href="dom.html#index-aria-toolbar"><code title="">toolbar</code></a> or <a href="dom.html#index-aria-tree"><code title="">tree</code></a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+<pre class="idl">interface <dfn id="htmlolistelement">HTMLOListElement</dfn> : <a href="dom.html#htmlelement">HTMLElement</a> {
+           attribute boolean <a data-anolis-xref="dom-ol-reversed" href="#dom-ol-reversed">reversed</a>;
+           attribute long <a data-anolis-xref="dom-ol-start" href="#dom-ol-start">start</a>;
+           attribute DOMString <a data-anolis-xref="dom-ol-type" href="#dom-ol-type">type</a>;
+};</pre>
+   </dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-ol-element">ol</a></code> element <a href="dom.html#represents">represents</a> a list of
+  items, where the items have been intentionally ordered, such that
+  changing the order would change the meaning of the document.</p>
+
+  <p>The items of the list are the <code><a href="#the-li-element">li</a></code> element child nodes
+  of the <code><a href="#the-ol-element">ol</a></code> element, in <a href="infrastructure.html#tree-order">tree order</a>.</p>
+
+  <p>The <dfn data-anolis-xref="attr-ol-reversed" id="attr-ol-reversed"><code>reversed</code></dfn>
+  attribute is a <a href="infrastructure.html#boolean-attribute">boolean attribute</a>. If present, it
+  indicates that the list is a descending list (..., 3, 2, 1). If the
+  attribute is omitted, the list is an ascending list (1, 2, 3,
+  ...).</p>
+
+  <p>The <dfn data-anolis-xref="attr-ol-start" id="attr-ol-start"><code>start</code></dfn>
+  attribute, if present, must be a <a href="infrastructure.html#valid-integer">valid integer</a> giving
+  the <a href="#ordinal-value">ordinal value</a> of the first list item.</p>
+
+  <div class="impl">
+
+  <p>If the <code data-anolis-xref="attr-ol-start"><a href="#attr-ol-start">start</a></code> attribute is
+  present, user agents must <a data-anolis-xref="rules for parsing
+  integers" href="infrastructure.html#rules-for-parsing-integers">parse it as an integer</a>, in order to determine the
+  attribute's value. The default value, used if the attribute is
+  missing or if the value cannot be converted to a number according to
+  the referenced algorithm, is 1 if the element has no <code data-anolis-xref="attr-ol-reversed"><a href="#attr-ol-reversed">reversed</a></code> attribute, and is the
+  number of child <code><a href="#the-li-element">li</a></code> elements otherwise.</p>
+
+  <p>The first item in the list has the <a href="#ordinal-value">ordinal value</a>
+  given by the <code><a href="#the-ol-element">ol</a></code> element's <code data-anolis-xref="attr-ol-start"><a href="#attr-ol-start">start</a></code> attribute, unless that
+  <code><a href="#the-li-element">li</a></code> element has a <code data-anolis-xref="attr-li-value"><a href="#attr-li-value">value</a></code> attribute with a value that can
+  be successfully parsed, in which case it has the <a href="#ordinal-value">ordinal
+  value</a> given by that <code data-anolis-xref="attr-li-value"><a href="#attr-li-value">value</a></code>
+  attribute.</p>
+
+  <p>Each subsequent item in the list has the <a href="#ordinal-value">ordinal
+  value</a> given by its <code data-anolis-xref="attr-li-value"><a href="#attr-li-value">value</a></code>
+  attribute, if it has one, or, if it doesn't, the <a href="#ordinal-value">ordinal
+  value</a> of the previous item, plus one if the <code data-anolis-xref="attr-ol-reversed"><a href="#attr-ol-reversed">reversed</a></code> is absent, or minus one if
+  it is present.</p>
+
+  </div>
+
+  <p>The <dfn data-anolis-xref="attr-ol-type" id="attr-ol-type"><code>type</code></dfn> attribute
+  can be used to specify the kind of marker to use in the list, in the
+  cases where that matters (e.g. because items are to be referenced by
+  their number/letter). The attribute, if specified, must have a value
+  that is a <a href="infrastructure.html#case-sensitive">case-sensitive</a> match for one of the
+  characters given in the first cell of one of the rows of the
+  following table. <span class="impl">The <code data-anolis-xref="attr-ol-type"><a href="#attr-ol-type">type</a></code> attribute represents the state
+  given in the cell in the second column of the row whose first cell
+  matches the attribute's value; if none of the cells match, or if the
+  attribute is omitted, then the attribute represents the <a data-anolis-xref="attr-ol-type-state-decimal" href="#attr-ol-type-state-decimal">decimal</a> state.</span></p>
+
+  <table><thead><tr><th>Keyword
+     <th>State
+     <th>Description
+     <th colspan="8">Examples for values 1-3 and 3999-4001
+   <tbody><tr><td><dfn data-anolis-xref="attr-ol-type-keyword-decimal" id="attr-ol-type-keyword-decimal"><code>1</code></dfn> (U+0031)
+     <td><dfn data-anolis-xref="attr-ol-type-state-decimal" id="attr-ol-type-state-decimal">decimal</dfn>
+     <td>Decimal numbers
+     <td class="eg"><samp>1.</samp> <td class="eg"><samp>2.</samp> <td class="eg"><samp>3.</samp> <td class="eg">... <td class="eg"><samp>3999.</samp> <td class="eg"><samp>4000.</samp> <td class="eg"><samp>4001.</samp> <td class="eg">...
+    <tr><td><dfn data-anolis-xref="attr-ol-type-keyword-lower-alpha" id="attr-ol-type-keyword-lower-alpha"><code>a</code></dfn> (U+0061)
+     <td><dfn data-anolis-xref="attr-ol-type-state-lower-alpha" id="attr-ol-type-state-lower-alpha">lower-alpha</dfn>
+     <td>Lowercase latin alphabet
+     <td class="eg"><samp><a href="text-level-semantics.html#the-a-element">a.</a></samp> <td class="eg"><samp><a href="text-level-semantics.html#the-b-element">b.</a></samp> <td class="eg"><samp>c.</samp> <td class="eg">... <td class="eg"><samp>ewu.</samp> <td class="eg"><samp>ewv.</samp> <td class="eg"><samp>eww.</samp> <td class="eg">...
+    <tr><td><dfn data-anolis-xref="attr-ol-type-keyword-upper-alpha" id="attr-ol-type-keyword-upper-alpha"><code>A</code></dfn> (U+0041)
+     <td><dfn data-anolis-xref="attr-ol-type-state-upper-alpha" id="attr-ol-type-state-upper-alpha">upper-alpha</dfn>
+     <td>Uppercase latin alphabet
+     <td class="eg"><samp><a href="text-level-semantics.html#the-a-element">A.</a></samp> <td class="eg"><samp><a href="text-level-semantics.html#the-b-element">B.</a></samp> <td class="eg"><samp>C.</samp> <td class="eg">... <td class="eg"><samp>EWU.</samp> <td class="eg"><samp>EWV.</samp> <td class="eg"><samp>EWW.</samp> <td class="eg">...
+    <tr><td><dfn data-anolis-xref="attr-ol-type-keyword-lower-roman" id="attr-ol-type-keyword-lower-roman"><code>i</code></dfn> (U+0069)
+     <td><dfn data-anolis-xref="attr-ol-type-state-lower-roman" id="attr-ol-type-state-lower-roman">lower-roman</dfn>
+     <td>Lowercase roman numerals
+     <td class="eg"><samp><a href="text-level-semantics.html#the-i-element">i.</a></samp> <td class="eg"><samp>ii.</samp> <td class="eg"><samp>iii.</samp> <td class="eg">... <td class="eg"><samp>mmmcmxcix.</samp> <td class="eg"><samp>i̅v̅.</samp> <td class="eg"><samp>i̅v̅i.</samp> <td class="eg">...
+    <tr><td><dfn data-anolis-xref="attr-ol-type-keyword-upper-roman" id="attr-ol-type-keyword-upper-roman"><code>I</code></dfn> (U+0049)
+     <td><dfn data-anolis-xref="attr-ol-type-state-upper-roman" id="attr-ol-type-state-upper-roman">upper-roman</dfn>
+     <td>Uppercase roman numerals
+     <td class="eg"><samp><a href="text-level-semantics.html#the-i-element">I.</a></samp> <td class="eg"><samp>II.</samp> <td class="eg"><samp>III.</samp> <td class="eg">... <td class="eg"><samp>MMMCMXCIX.</samp> <td class="eg"><samp>I̅V̅.</samp> <td class="eg"><samp>I̅V̅I.</samp> <td class="eg">...
+  </table><div class="impl">
+
+  <p>User agents should render the items of the list in a manner
+  consistent with the state of the <code data-anolis-xref="attr-ol-type"><a href="#attr-ol-type">type</a></code> attribute of the <code><a href="#the-ol-element">ol</a></code>
+  element. Numbers less than or equal to zero should always use the
+  decimal system regardless of the <code data-anolis-xref="attr-ol-type"><a href="#attr-ol-type">type</a></code> attribute.</p>
+
+  <p class="note">For CSS user agents, a mapping for this attribute to
+  the 'list-style-type' CSS property is given <a href="rendering.html#decohints">in
+  the rendering section</a> (the mapping is straightforward: the
+  states above have the same names as their corresponding CSS
+  values).</p>
+
+  </div>
+
+  <!-- v2: resuming numbering of lists from previous lists? -->
+
+  <div class="impl">
+
+  <p>The <dfn data-anolis-xref="dom-ol-reversed" id="dom-ol-reversed"><code>reversed</code></dfn>,
+  <dfn data-anolis-xref="dom-ol-start" id="dom-ol-start"><code>start</code></dfn>, and <dfn data-anolis-xref="dom-ol-type" id="dom-ol-type"><code>type</code></dfn> IDL attributes must
+  <a href="infrastructure.html#reflect">reflect</a> the respective content attributes of the same
+  name. The <code data-anolis-xref="dom-ol-start"><a href="#dom-ol-start">start</a></code> IDL attribute has
+  the same default as its content attribute.</p>
+
+  </div>
+
+  <div class="example">
+
+   <p>The following markup shows a list where the order matters, and
+   where the <code><a href="#the-ol-element">ol</a></code> element is therefore appropriate. Compare
+   this list to the equivalent list in the <code><a href="#the-ul-element">ul</a></code> section to
+   see an example of the same items using the <code><a href="#the-ul-element">ul</a></code>
+   element.</p>
+
+   <pre>&lt;p&gt;I have lived in the following countries (given in the order of when
+I first lived there):&lt;/p&gt;
+&lt;ol&gt;
+ &lt;li&gt;Switzerland
+ &lt;li&gt;United Kingdom
+ &lt;li&gt;United States
+ &lt;li&gt;Norway
+&lt;/ol&gt;</pre>
+
+   <p>Note how changing the order of the list changes the meaning of
+   the document. In the following example, changing the relative order
+   of the first two items has changed the birthplace of the
+   author:</p>
+
+   <pre>&lt;p&gt;I have lived in the following countries (given in the order of when
+I first lived there):&lt;/p&gt;
+&lt;ol&gt;
+ &lt;li&gt;United Kingdom
+ &lt;li&gt;Switzerland
+ &lt;li&gt;United States
+ &lt;li&gt;Norway
+&lt;/ol&gt;</pre>
+
+  </div>
+  
+  <h4 id="the-ul-element"><span class="secno">4.4.6 </span>The <dfn><code>ul</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dd>If the element's children include at least one <code><a href="#the-li-element">li</a></code> element: <a href="dom.html#palpable-content-0">Palpable content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd>Zero or more <code><a href="#the-li-element">li</a></code> and <a data-anolis-xref="script-supporting elements" href="dom.html#script-supporting-elements-0">script-supporting</a> elements.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>Neither tag is omissible</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#index-aria-list"><code title="">list</code></a> role (default - <a href="dom.html#aria-usage-note"><em>do not set</em></a>), <a href="dom.html#index-aria-directory"><code title="">directory</code></a>, <a href="dom.html#index-aria-group"><code title="">group</code></a>, <a href="dom.html#index-aria-listbox"><code title="">listbox</code></a>, <a href="dom.html#index-aria-menu"><code title="">menu</code></a>, <a href="dom.html#index-aria-menubar"><code title="">menubar</code></a>, <a href="dom.html#index-aria-presentation"><code title="">presentation</code></a>, <a href="dom.html#index-aria-tablist"><code title="">tablist</code></a>, <a href="dom.html#index-aria-toolbar"><code title="">toolbar</code></a> or <a href="dom.html#index-aria-tree"><code title="">tree</code></a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+    <pre class="idl">interface <dfn id="htmlulistelement">HTMLUListElement</dfn> : <a href="dom.html#htmlelement">HTMLElement</a> {};</pre>
+   </dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-ul-element">ul</a></code> element <a href="dom.html#represents">represents</a> a list of
+  items, where the order of the items is not important — that
+  is, where changing the order would not materially change the meaning
+  of the document.</p>
+
+  <p>The items of the list are the <code><a href="#the-li-element">li</a></code> element child nodes
+  of the <code><a href="#the-ul-element">ul</a></code> element.</p>
+
+  <div class="example">
+  
+   <p>The following markup shows a list where the order does not
+   matter, and where the <code><a href="#the-ul-element">ul</a></code> element is therefore
+   appropriate. Compare this list to the equivalent list in the
+   <code><a href="#the-ol-element">ol</a></code> section to see an example of the same items using
+   the <code><a href="#the-ol-element">ol</a></code> element.</p>
+
+   <pre>&lt;p&gt;I have lived in the following countries:&lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;Norway
+ &lt;li&gt;Switzerland
+ &lt;li&gt;United Kingdom
+ &lt;li&gt;United States
+&lt;/ul&gt;</pre>
+
+   <p>Note that changing the order of the list does not change the
+   meaning of the document. The items in the snippet above are given
+   in alphabetical order, but in the snippet below they are given in
+   order of the size of their current account balance in 2007, without
+   changing the meaning of the document whatsoever:</p>
+
+   <pre>&lt;p&gt;I have lived in the following countries:&lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;Switzerland
+ &lt;li&gt;Norway
+ &lt;li&gt;United Kingdom
+ &lt;li&gt;United States
+&lt;/ul&gt;</pre>
+
+  </div>
+
+  
+  <h4 id="the-li-element"><span class="secno">4.4.7 </span>The <dfn><code>li</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd>None.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Inside <code><a href="#the-ol-element">ol</a></code> elements.</dd>
+   <dd>Inside <code><a href="#the-ul-element">ul</a></code> elements.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dd>If the element is a child of an <code><a href="#the-ol-element">ol</a></code> element: <code data-anolis-xref="attr-li-value"><a href="#attr-li-value">value</a></code> -  Ordinal value of the list item</dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd><p>An <code><a href="#the-li-element">li</a></code> element's <a data-anolis-xref="syntax-end-tag" href="syntax.html#syntax-end-tag">end tag</a> may be omitted if the
+  <code><a href="#the-li-element">li</a></code> element is immediately followed by another <code><a href="#the-li-element">li</a></code> element or if there is
+  no more content in the parent element.</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#index-aria-listitem"><code title="">listitem</code></a> role (default - <a href="dom.html#aria-usage-note"><em>do not set</em></a>), <a href="dom.html#index-aria-menuitem"><code title="">menuitem</code></a>, <a href="dom.html#index-aria-menuitemcheckbox"><code title="">menuitemcheckbox</code></a>, <a href="dom.html#index-aria-menuitemradio"><code title="">menuitemradio</code></a>, <a href="dom.html#index-aria-option"><code title="">option</code></a>, <a href="dom.html#index-aria-tab"><code title="">tab</code></a>, <a href="dom.html#index-aria-treeitem"><code title="">treeitem</code></a> or <a href="dom.html#index-aria-presentation"><code title="">presentation</code></a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+<pre class="idl">interface <dfn id="htmllielement">HTMLLIElement</dfn> : <a href="dom.html#htmlelement">HTMLElement</a> {
+           attribute long <a data-anolis-xref="dom-li-value" href="#dom-li-value">value</a>;
+};</pre>
+   </dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-li-element">li</a></code> element <a href="dom.html#represents">represents</a> a list
+  item. If its parent element is an <code><a href="#the-ol-element">ol</a></code>, or <code><a href="#the-ul-element">ul</a></code>,
+  then the element is an item of the
+  parent element's list, as defined for those elements. Otherwise, the
+  list item has no defined list-related relationship to any other
+  <code><a href="#the-li-element">li</a></code> element.</p>
+
+  <p>If the parent element is an <code><a href="#the-ol-element">ol</a></code> element, then the
+  <code><a href="#the-li-element">li</a></code> element has an <dfn id="ordinal-value">ordinal value</dfn>.</p>
+
+  <p>The <dfn data-anolis-xref="attr-li-value" id="attr-li-value"><code>value</code></dfn>
+  attribute, if present, must be a <a href="infrastructure.html#valid-integer">valid integer</a> giving
+  the <a href="#ordinal-value">ordinal value</a> of the list item.</p>
+
+  <div class="impl">
+
+  <p>If the <code data-anolis-xref="attr-li-value"><a href="#attr-li-value">value</a></code> attribute is
+  present, user agents must <a data-anolis-xref="rules for parsing
+  integers" href="infrastructure.html#rules-for-parsing-integers">parse it as an integer</a>, in order to determine the
+  attribute's value. If the attribute's value cannot be converted to a
+  number, the attribute must be treated as if it was absent. The
+  attribute has no default value.</p>
+
+  <p>The <code data-anolis-xref="attr-li-value"><a href="#attr-li-value">value</a></code> attribute is
+  processed relative to the element's parent <code><a href="#the-ol-element">ol</a></code> element
+  (q.v.), if there is one. If there is not, the attribute has no
+  effect.</p>
+
+  <p>The <dfn data-anolis-xref="dom-li-value" id="dom-li-value"><code>value</code></dfn> IDL
+  attribute must <a href="infrastructure.html#reflect">reflect</a> the value of the <code data-anolis-xref="dom-li-value"><a href="#dom-li-value">value</a></code> content attribute.</p>
+
+  </div>
+
+  <div class="example">
+   <p>The following example, the top ten movies are listed (in reverse
+   order). Note the way the list is given a title by using a
+   <code><a href="#the-figure-element">figure</a></code> element and its <code><a href="#the-figcaption-element">figcaption</a></code>
+   element.</p>
+   <pre>&lt;figure&gt;
+ &lt;figcaption&gt;The top 10 movies of all time&lt;/figcaption&gt;
+ &lt;ol&gt;
+  &lt;li value="10"&gt;&lt;cite&gt;Josie and the Pussycats&lt;/cite&gt;, 2001&lt;/li&gt;
+  &lt;li value="9"&gt;&lt;cite lang="sh"&gt;Црна мачка, бели мачор&lt;/cite&gt;, 1998&lt;/li&gt;
+  &lt;li value="8"&gt;&lt;cite&gt;A Bug's Life&lt;/cite&gt;, 1998&lt;/li&gt;
+  &lt;li value="7"&gt;&lt;cite&gt;Toy Story&lt;/cite&gt;, 1995&lt;/li&gt;
+  &lt;li value="6"&gt;&lt;cite&gt;Monsters, Inc&lt;/cite&gt;, 2001&lt;/li&gt;
+  &lt;li value="5"&gt;&lt;cite&gt;Cars&lt;/cite&gt;, 2006&lt;/li&gt;
+  &lt;li value="4"&gt;&lt;cite&gt;Toy Story 2&lt;/cite&gt;, 1999&lt;/li&gt;
+  &lt;li value="3"&gt;&lt;cite&gt;Finding Nemo&lt;/cite&gt;, 2003&lt;/li&gt;
+  &lt;li value="2"&gt;&lt;cite&gt;The Incredibles&lt;/cite&gt;, 2004&lt;/li&gt;
+  &lt;li value="1"&gt;&lt;cite&gt;Ratatouille&lt;/cite&gt;, 2007&lt;/li&gt;
+ &lt;/ol&gt;
+&lt;/figure&gt;</pre>
+
+   <p>The markup could also be written as follows, using the <code data-anolis-xref="attr-ol-reversed"><a href="#attr-ol-reversed">reversed</a></code> attribute on the
+   <code><a href="#the-ol-element">ol</a></code> element:</p>
+
+   <pre>&lt;figure&gt;
+ &lt;figcaption&gt;The top 10 movies of all time&lt;/figcaption&gt;
+ &lt;ol reversed&gt;
+  &lt;li&gt;&lt;cite&gt;Josie and the Pussycats&lt;/cite&gt;, 2001&lt;/li&gt;
+  &lt;li&gt;&lt;cite lang="sh"&gt;Црна мачка, бели мачор&lt;/cite&gt;, 1998&lt;/li&gt;
+  &lt;li&gt;&lt;cite&gt;A Bug's Life&lt;/cite&gt;, 1998&lt;/li&gt;
+  &lt;li&gt;&lt;cite&gt;Toy Story&lt;/cite&gt;, 1995&lt;/li&gt;
+  &lt;li&gt;&lt;cite&gt;Monsters, Inc&lt;/cite&gt;, 2001&lt;/li&gt;
+  &lt;li&gt;&lt;cite&gt;Cars&lt;/cite&gt;, 2006&lt;/li&gt;
+  &lt;li&gt;&lt;cite&gt;Toy Story 2&lt;/cite&gt;, 1999&lt;/li&gt;
+  &lt;li&gt;&lt;cite&gt;Finding Nemo&lt;/cite&gt;, 2003&lt;/li&gt;
+  &lt;li&gt;&lt;cite&gt;The Incredibles&lt;/cite&gt;, 2004&lt;/li&gt;
+  &lt;li&gt;&lt;cite&gt;Ratatouille&lt;/cite&gt;, 2007&lt;/li&gt;
+ &lt;/ol&gt;
+&lt;/figure&gt;</pre>
+ </div>
+
+  <p class="note">While it is conforming to include heading elements
+  (e.g. <code><a href="sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements">h1</a></code>) inside <code><a href="#the-li-element">li</a></code> elements, it likely
+  does not convey the semantics that the author intended. A heading
+  starts a new section, so a heading in a list implicitly splits the
+  list into spanning multiple sections.</p>
+
+
+
+
+  <h4 id="the-dl-element"><span class="secno">4.4.8 </span>The <dfn><code>dl</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dd>If the element's children include at least one name-value group: <a href="dom.html#palpable-content-0">Palpable content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd>Zero or more groups each consisting of one or more <code><a href="#the-dt-element">dt</a></code> elements followed by one or more <code><a href="#the-dd-element">dd</a></code> elements, optionally intermixed with <a href="dom.html#script-supporting-elements-0">script-supporting elements</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+  <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>Neither tag is omissible</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#allowed-aria-roles,-states-and-properties">Any role value</a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd> 
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+    <pre class="idl">interface <dfn id="htmldlistelement">HTMLDListElement</dfn> : <a href="dom.html#htmlelement">HTMLElement</a> {};</pre>
+   </dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-dl-element">dl</a></code> element <a href="dom.html#represents">represents</a> an
+  association list consisting of zero or more name-value groups (a
+  description list). A name-value group consists of one or more names
+  (<code><a href="#the-dt-element">dt</a></code> elements) followed by one or more values
+  (<code><a href="#the-dd-element">dd</a></code> elements), ignoring any nodes other than <code><a href="#the-dt-element">dt</a></code> and <code><a href="#the-dd-element">dd</a></code> elements. Within a single <code><a href="#the-dl-element">dl</a></code> element,
+  there should not be more than one <code><a href="#the-dt-element">dt</a></code> element for each
+  name.</p>
+
+  <p>Name-value groups may be terms and definitions, metadata topics
+  and values, questions and answers, or any other groups of name-value
+  data.</p>
+
+  <p>The values within a group are alternatives; multiple paragraphs
+  forming part of the same value must all be given within the same
+  <code><a href="#the-dd-element">dd</a></code> element.</p>
+
+  <p>The order of the list of groups, and of the names and values
+  within each group, may be significant.</p>
+
+  <div class="impl">
+
+  <p>If a <code><a href="#the-dl-element">dl</a></code> element is empty, it contains no groups.</p>
+
+  <p>If a <code><a href="#the-dl-element">dl</a></code> element has one or more non-<a data-anolis-xref="inter-element whitespace" href="dom.html#inter-element-whitespace">whitespace</a> <code><a href="infrastructure.html#text-0">Text</a></code>
+  node children, or has child elements that are neither
+  <code><a href="#the-dt-element">dt</a></code> nor <code><a href="#the-dd-element">dd</a></code> elements, all such
+  <code><a href="infrastructure.html#text-0">Text</a></code> nodes and elements, as well as their descendants
+  (including any <code><a href="#the-dt-element">dt</a></code> or <code><a href="#the-dd-element">dd</a></code> elements), do not
+  form part of any groups in that <code><a href="#the-dl-element">dl</a></code>.</p>
+
+  <p>If a <code><a href="#the-dl-element">dl</a></code> element has one or more <code><a href="#the-dt-element">dt</a></code>
+  element children but no <code><a href="#the-dd-element">dd</a></code> element children, then it
+  consists of one group with names but no values.</p>
+
+  <p>If a <code><a href="#the-dl-element">dl</a></code> element has one or more <code><a href="#the-dd-element">dd</a></code>
+  element children but no <code><a href="#the-dt-element">dt</a></code> element children, then it
+  consists of one group with values but no names.</p>
+
+  <p>If a <code><a href="#the-dl-element">dl</a></code> element's first <code><a href="#the-dt-element">dt</a></code> or
+  <code><a href="#the-dd-element">dd</a></code> element child is a <code><a href="#the-dd-element">dd</a></code> element, then the
+  first group has no associated name.</p>
+
+  <p>If a <code><a href="#the-dl-element">dl</a></code> element's last <code><a href="#the-dt-element">dt</a></code> or
+  <code><a href="#the-dd-element">dd</a></code> element child is a <code><a href="#the-dt-element">dt</a></code> element, then the
+  last group has no associated value.</p>
+
+  <p class="note">When a <code><a href="#the-dl-element">dl</a></code> element doesn't match its
+  content model, it is often due to accidentally using <code><a href="#the-dd-element">dd</a></code>
+  elements in the place of <code><a href="#the-dt-element">dt</a></code> elements and vice
+  versa. Conformance checkers can spot such mistakes and might be able
+  to advise authors how to correctly use the markup.</p>
+  
+  </div>
+
+  <div class="example">
+
+   <p>In the following example, one entry ("Authors") is linked to two values ("John" and
+   "Luke").</p>
+
+   <pre>&lt;dl&gt;
+ &lt;dt&gt; Authors
+ &lt;dd&gt; John
+ &lt;dd&gt; Luke
+ &lt;dt&gt; Editor
+ &lt;dd&gt; Frank
+&lt;/dl&gt;</pre>
+  </div>
+  
+
+  <div class="example">
+
+   <p>In the following example, one definition is linked to two terms.</p>
+
+   <pre>&lt;dl&gt;
+ &lt;dt lang="en-US"&gt; &lt;dfn&gt;color&lt;/dfn&gt; &lt;/dt&gt;
+ &lt;dt lang="en-GB"&gt; &lt;dfn&gt;colour&lt;/dfn&gt; &lt;/dt&gt;
+ &lt;dd&gt; A sensation which (in humans) derives from the ability of
+ the fine structure of the eye to distinguish three differently
+ filtered analyses of a view. &lt;/dd&gt;
+&lt;/dl&gt;</pre>
+  </div>
+
+  <div class="example">
+
+   <p>The following example illustrates the use of the <code><a href="#the-dl-element">dl</a></code> element to mark up metadata
+   of sorts. At the end of the example, one group has two metadata labels ("Authors" and "Editors")
+   and two values ("Robert Rothman" and "Daniel Jackson").</p>
+
+   <pre>&lt;dl&gt;
+ &lt;dt&gt; Last modified time &lt;/dt&gt;
+ &lt;dd&gt; 2004-12-23T23:33Z &lt;/dd&gt;
+ &lt;dt&gt; Recommended update interval &lt;/dt&gt;
+ &lt;dd&gt; 60s &lt;/dd&gt;
+ &lt;dt&gt; Authors &lt;/dt&gt;
+ &lt;dt&gt; Editors &lt;/dt&gt;
+ &lt;dd&gt; Robert Rothman &lt;/dd&gt;
+ &lt;dd&gt; Daniel Jackson &lt;/dd&gt;
+&lt;/dl&gt;</pre>
+  </div>
+
+  <div class="example">
+
+   <p>The following example shows the <code><a href="#the-dl-element">dl</a></code> element used to give a set of instructions.
+   The order of the instructions here is important (in the other examples, the order of the blocks
+   was not important).</p>
+
+   <pre>&lt;p&gt;Determine the victory points as follows (use the
+first matching case):&lt;/p&gt;
+&lt;dl&gt;
+ &lt;dt&gt; If you have exactly five gold coins &lt;/dt&gt;
+ &lt;dd&gt; You get five victory points &lt;/dd&gt;
+ &lt;dt&gt; If you have one or more gold coins, and you have one or more silver coins &lt;/dt&gt;
+ &lt;dd&gt; You get two victory points &lt;/dd&gt;
+ &lt;dt&gt; If you have one or more silver coins &lt;/dt&gt;
+ &lt;dd&gt; You get one victory point &lt;/dd&gt;
+ &lt;dt&gt; Otherwise &lt;/dt&gt;
+ &lt;dd&gt; You get no victory points &lt;/dd&gt;
+&lt;/dl&gt;</pre>
+  </div>
+
+  <div class="example">
+
+   <p>The following snippet shows a <code><a href="#the-dl-element">dl</a></code> element being used as a glossary. Note the use
+   of <code><a href="text-level-semantics.html#the-dfn-element">dfn</a></code> to indicate the word being defined.</p>
+
+   <pre>&lt;dl&gt;
+ &lt;dt&gt;&lt;dfn&gt;Apartment&lt;/dfn&gt;, n.&lt;/dt&gt;
+ &lt;dd&gt;An execution context grouping one or more threads with one or
+ more COM objects.&lt;/dd&gt;
+ &lt;dt&gt;&lt;dfn&gt;Flat&lt;/dfn&gt;, n.&lt;/dt&gt;
+ &lt;dd&gt;A deflated tire.&lt;/dd&gt;
+ &lt;dt&gt;&lt;dfn&gt;Home&lt;/dfn&gt;, n.&lt;/dt&gt;
+ &lt;dd&gt;The user's login directory.&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+  </div>
+
+  <p class="note">The <code><a href="#the-dl-element">dl</a></code> element is inappropriate for marking up dialogue. <a href="common-idioms.html#conversations">Examples of how to mark up dialogue</a> are shown below.</p>
+
+
+
+  <h4 id="the-dt-element"><span class="secno">4.4.9 </span>The <dfn><code>dt</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd>None.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Before <code><a href="#the-dd-element">dd</a></code> or <code><a href="#the-dt-element">dt</a></code> elements inside <code><a href="#the-dl-element">dl</a></code> elements.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>, but with no <code><a href="sections.html#the-header-element">header</a></code>, <code><a href="sections.html#the-footer-element">footer</a></code>, <a href="dom.html#sectioning-content-0">sectioning content</a>, or <a href="dom.html#heading-content-0">heading content</a> descendants.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd><p>A <code><a href="#the-dt-element">dt</a></code> element's <a data-anolis-xref="syntax-end-tag" href="syntax.html#syntax-end-tag">end tag</a> may be omitted if the
+   <code><a href="#the-dt-element">dt</a></code> element is immediately followed by another <code><a href="#the-dt-element">dt</a></code> element or a
+   <code><a href="#the-dd-element">dd</a></code> element.</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#allowed-aria-roles,-states-and-properties">Any role value</a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes 
+   <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>Uses <code><a href="dom.html#htmlelement">HTMLElement</a></code>.</dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-dt-element">dt</a></code> element <a href="dom.html#represents">represents</a> the term, or name, part of a
+  term-description group in a description list (<code><a href="#the-dl-element">dl</a></code> element).</p>
+
+  <p class="note">The <code><a href="#the-dt-element">dt</a></code> element itself, when used in a <code><a href="#the-dl-element">dl</a></code> element, does
+  not indicate that its contents are a term being defined, but this can be indicated using the
+  <code><a href="text-level-semantics.html#the-dfn-element">dfn</a></code> element.</p>
+
+  <div class="example">
+
+   <p>This example shows a list of frequently asked questions (a FAQ) marked up using the
+   <code><a href="#the-dt-element">dt</a></code> element for questions and the <code><a href="#the-dd-element">dd</a></code> element for answers.</p>
+
+   <pre>&lt;article&gt;
+ &lt;h1&gt;FAQ&lt;/h1&gt;
+ &lt;dl&gt;
+  &lt;dt&gt;What do we want?&lt;/dt&gt;
+  &lt;dd&gt;Our data.&lt;/dd&gt;
+  &lt;dt&gt;When do we want it?&lt;/dt&gt;
+  &lt;dd&gt;Now.&lt;/dd&gt;
+  &lt;dt&gt;Where is it?&lt;/dt&gt;
+  &lt;dd&gt;We are not sure.&lt;/dd&gt;
+ &lt;/dl&gt;
+&lt;/article&gt;</pre>
+
+  </div>
+
+
+
+  <h4 id="the-dd-element"><span class="secno">4.4.10 </span>The <dfn><code>dd</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd>None.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>After <code><a href="#the-dt-element">dt</a></code> or <code><a href="#the-dd-element">dd</a></code> elements inside <code><a href="#the-dl-element">dl</a></code> elements.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd><p>A <code><a href="#the-dd-element">dd</a></code> element's <a data-anolis-xref="syntax-end-tag" href="syntax.html#syntax-end-tag">end tag</a> may be omitted if the
+   <code><a href="#the-dd-element">dd</a></code> element is immediately followed by another <code><a href="#the-dd-element">dd</a></code> element or a
+   <code><a href="#the-dt-element">dt</a></code> element, or if there is no more content in the parent element.</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#allowed-aria-roles,-states-and-properties">Any role value</a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes 
+   <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>Uses <code><a href="dom.html#htmlelement">HTMLElement</a></code>.</dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-dd-element">dd</a></code> element <a href="dom.html#represents">represents</a> the description, definition, or value, part
+  of a term-description group in a description list (<code><a href="#the-dl-element">dl</a></code> element).</p>
+
+  <div class="example">
+
+   <p>A <code><a href="#the-dl-element">dl</a></code> can be used to define a vocabulary list, like in a dictionary. In the
+   following example, each entry, given by a <code><a href="#the-dt-element">dt</a></code> with a <code><a href="text-level-semantics.html#the-dfn-element">dfn</a></code>, has several
+   <code><a href="#the-dd-element">dd</a></code>s, showing the various parts of the definition.</p>
+
+   <!-- the actual pronunciations below are nonsense. -->
+   <pre>&lt;dl&gt;
+ &lt;dt&gt;&lt;dfn&gt;happiness&lt;/dfn&gt;&lt;/dt&gt;
+ &lt;dd class="pronunciation"&gt;/'hæ p. nes/&lt;/dd&gt;
+ &lt;dd class="part-of-speech"&gt;&lt;i&gt;&lt;abbr&gt;n.&lt;/abbr&gt;&lt;/i&gt;&lt;/dd&gt;
+ &lt;dd&gt;The state of being happy.&lt;/dd&gt;
+ &lt;dd&gt;Good fortune; success. &lt;q&gt;Oh &lt;b&gt;happiness&lt;/b&gt;! It worked!&lt;/q&gt;&lt;/dd&gt;
+ &lt;dt&gt;&lt;dfn&gt;rejoice&lt;/dfn&gt;&lt;/dt&gt;
+ &lt;dd class="pronunciation"&gt;/ri jois'/&lt;/dd&gt;
+ &lt;dd&gt;&lt;i class="part-of-speech"&gt;&lt;abbr&gt;v.intr.&lt;/abbr&gt;&lt;/i&gt; To be delighted oneself.&lt;/dd&gt;
+ &lt;dd&gt;&lt;i class="part-of-speech"&gt;&lt;abbr&gt;v.tr.&lt;/abbr&gt;&lt;/i&gt; To cause one to be delighted.&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+  </div>
+
+
+  <h4 id="the-figure-element"><span class="secno">4.4.11 </span>The <dfn><code>figure</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dd><a href="sections.html#sectioning-root">Sectioning root</a>.</dd>
+   <dd><a href="dom.html#palpable-content-0">Palpable content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd>Either: One <code><a href="#the-figcaption-element">figcaption</a></code> element followed by <a href="dom.html#flow-content-1">flow content</a>.</dd>
+   <dd>Or: <a href="dom.html#flow-content-1">Flow content</a> followed by one <code><a href="#the-figcaption-element">figcaption</a></code> element.</dd>
+   <dd>Or: <a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>Neither tag is omissible</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#allowed-aria-roles,-states-and-properties">Any role value</a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes 
+   <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>Uses <code><a href="dom.html#htmlelement">HTMLElement</a></code>.</dd>
+  </dl><!--TOPIC:HTML--><!-- v2: Add a <credit> element for photo credits --><p>The <code><a href="#the-figure-element">figure</a></code> element <a href="dom.html#represents">represents</a> some <a href="dom.html#flow-content-1">flow content</a>,
+  optionally with a caption, that is self-contained (like a complete sentence) and is typically
+  referenced as a single unit from the main flow of the document.</p>
+
+  <p class="note">Self-contained in this context does not necessarily mean independent. For example,
+  each sentence in a paragraph is self-contained; an image that is part of a sentence would be
+  inappropriate for <code><a href="#the-figure-element">figure</a></code>, but an entire sentence made of images would be fitting.</p>
+
+  <p>The element can thus be used to annotate illustrations, diagrams, photos, code listings, etc.</p>
+
+  <div class="note">
+
+   <p>When a <code><a href="#the-figure-element">figure</a></code> is referred to from the main content of the document by identifying
+   it by its caption (e.g. by figure number), it enables such content to be easily moved away from
+   that primary content, e.g. to the side of the page, to dedicated pages, or to an appendix, without
+   affecting the flow of the document.</p>
+
+   <p>If a <code><a href="#the-figure-element">figure</a></code> element is referenced by its relative position, e.g. "in the
+   photograph above" or "as the next figure shows", then moving the figure would disrupt the page's
+   meaning. Authors are encouraged to consider using labels to refer to figures, rather than using
+   such relative references, so that the page can easily be restyled without affecting the page's
+   meaning.</p>
+
+  </div>
+
+  <p>The <span class="impl">first</span> <code><a href="#the-figcaption-element">figcaption</a></code> element child of the element, if
+  any, represents the caption of the <code><a href="#the-figure-element">figure</a></code> element's contents. If there is no child
+  <code><a href="#the-figcaption-element">figcaption</a></code> element, then there is no caption.</p>
+
+  <p>A <code><a href="#the-figure-element">figure</a></code> element's contents are part of the surrounding flow. If the purpose of
+  the page is to display the figure, for example a photograph on an image sharing site, the
+  <code><a href="#the-figure-element">figure</a></code> and <code><a href="#the-figcaption-element">figcaption</a></code> elements can be used to explicitly provide a
+  caption for that figure. For content that is only tangentially related, or that serves a separate
+  purpose than the surrounding flow, the <code><a href="sections.html#the-aside-element">aside</a></code> element should be used (and can itself
+  wrap a <code><a href="#the-figure-element">figure</a></code>). For example, a pull quote that repeats content from an
+  <code><a href="sections.html#the-article-element">article</a></code> would be more appropriate in an <code><a href="sections.html#the-aside-element">aside</a></code> than in a
+  <code><a href="#the-figure-element">figure</a></code>, because it isn't part of the content, it's a repetition of the content for
+  the purposes of enticing readers or highlighting key topics.</p>
+
+  <div class="example">
+
+   <p>This example shows the <code><a href="#the-figure-element">figure</a></code> element to mark up a code listing.</p>
+
+   <pre>&lt;p&gt;In &lt;a href="#l4"&gt;listing 4&lt;/a&gt; we see the primary core interface
+API declaration.&lt;/p&gt;
+&lt;figure id="l4"&gt;
+ &lt;figcaption&gt;Listing 4. The primary core interface API declaration.&lt;/figcaption&gt;
+ &lt;pre&gt;&lt;code&gt;interface PrimaryCore {
+ boolean verifyDataLine();
+ void sendData(in sequence&amp;lt;byte&gt; data);
+ void initSelfDestruct();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/figure&gt;
+&lt;p&gt;The API is designed to use UTF-8.&lt;/p&gt;</pre>
+
+  </div>
+
+  <div class="example">
+
+   <p>Here we see a <code><a href="#the-figure-element">figure</a></code> element to mark up a photo that is the main content of the
+   page (as in a gallery).</p>
+
+   <pre>&lt;!DOCTYPE HTML&gt;
+&lt;title&gt;Bubbles at work — My Gallery™&lt;/title&gt;
+&lt;figure&gt;
+ &lt;img src="bubbles-work.jpeg"
+      alt="Bubbles, sitting in his office chair, works on his
+           latest project intently."&gt;
+ &lt;figcaption&gt;Bubbles at work&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;nav&gt;&lt;a href="19414.html"&gt;Prev&lt;/a&gt; — &lt;a href="19416.html"&gt;Next&lt;/a&gt;&lt;/nav&gt;</pre>
+
+  </div>
+
+  <div class="example">
+
+   <p>In this example, we see an image that is <em>not</em> a figure, as well as an image and a
+   video that are. The first image is literally part of the example's second sentence, so it's not a
+   self-contained unit, and thus <code><a href="#the-figure-element">figure</a></code> would be inappropriate.</p>
+
+   <pre>&lt;h2&gt;Malinko's comics&lt;/h2&gt;
+
+&lt;p&gt;This case centered on some sort of "intellectual property"
+infringement related to a comic (see Exhibit A). The suit started
+after a trailer ending with these words:
+
+&lt;blockquote&gt;
+ &lt;img src="promblem-packed-action.png" alt="ROUGH COPY! Promblem-Packed Action!"&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;...was aired. A lawyer, armed with a Bigger Notebook, launched a
+preemptive strike using snowballs. A complete copy of the trailer is
+included with Exhibit B.
+
+&lt;figure&gt;
+ &lt;img src="ex-a.png" alt="Two squiggles on a dirty piece of paper."&gt;
+ &lt;figcaption&gt;Exhibit A. The alleged &lt;cite&gt;rough copy&lt;/cite&gt; comic.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+ &lt;video src="ex-b.mov"&gt;&lt;/video&gt;
+ &lt;figcaption&gt;Exhibit B. The &lt;cite&gt;Rough Copy&lt;/cite&gt; trailer.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;The case was resolved out of court.</pre>
+
+  </div>
+
+  <div class="example">
+
+   <p>Here, a part of a poem is marked up using <code><a href="#the-figure-element">figure</a></code>.</p>
+
+   <pre>&lt;figure&gt;
+ &lt;p&gt;'Twas brillig, and the slithy toves&lt;br&gt;
+ Did gyre and gimble in the wabe;&lt;br&gt;
+ All mimsy were the borogoves,&lt;br&gt;
+ And the mome raths outgrabe.&lt;/p&gt;
+ &lt;figcaption&gt;&lt;cite&gt;Jabberwocky&lt;/cite&gt; (first verse). Lewis Carroll, 1832-98&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+
+  </div>
+
+  <div class="example">
+
+   <p>In this example, which could be part of a much larger work discussing a castle, nested
+   <code><a href="#the-figure-element">figure</a></code> elements are used to provide both a group caption and individual captions for
+   each figure in the group:</p>
+
+   <pre>&lt;figure&gt;
+ &lt;figcaption&gt;The castle through the ages: 1423, 1858, and 1999 respectively.&lt;/figcaption&gt;
+ &lt;figure&gt;
+  &lt;figcaption&gt;Etching. Anonymous, ca. 1423.&lt;/figcaption&gt;
+  &lt;img src="castle1423.jpeg" alt="The castle has one tower, and a tall wall around it."&gt;
+ &lt;/figure&gt;
+ &lt;figure&gt;
+  &lt;figcaption&gt;Oil-based paint on canvas. Maria Towle, 1858.&lt;/figcaption&gt;
+  &lt;img src="castle1858.jpeg" alt="The castle now has two towers and two walls."&gt;
+ &lt;/figure&gt;
+ &lt;figure&gt;
+  &lt;figcaption&gt;Film photograph. Peter Jankle, 1999.&lt;/figcaption&gt;
+  &lt;img src="castle1999.jpeg" alt="The castle lies in ruins, the original tower all that remains in one piece."&gt;
+ &lt;/figure&gt;
+&lt;/figure&gt;</pre>
+
+  </div>
+
+<!--TITLE-->
+
+  <div class="example">
+
+   <p>The figure is sometimes referenced only implicitly from the content:</p>
+
+   <!-- from http://www.reuters.com/article/2013/10/15/us-usa-fiscal-idUSBRE98N11220131015 -->
+
+   <pre>&lt;article&gt;
+ &lt;h1&gt;Fiscal negotiations stumble in Congress as deadline nears&lt;/h1&gt;
+ &lt;figure&gt;
+  &lt;img src="obama-reid.jpeg" alt="Obama and Reid sit together smiling in the Oval Office."&gt;
+  &lt;figcaption&gt;Barrak Obama and Harry Reid. White House press photograph.&lt;/figcaption&gt;
+ &lt;/figure&gt;
+ &lt;p&gt;Negotiations in Congress to end the fiscal impasse sputtered on Tuesday, leaving both chambers
+ grasping for a way to reopen the government and raise the country's borrowing authority with a
+ Thursday deadline drawing near.&lt;/p&gt;
+ ...
+&lt;/article&gt;</pre>
+
+  </div>
+
+
+  <h4 id="the-figcaption-element"><span class="secno">4.4.12 </span>The <dfn><code>figcaption</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd>None.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>As the first or last child of a <code><a href="#the-figure-element">figure</a></code> element.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>Neither tag is omissible</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#allowed-aria-roles,-states-and-properties">Any role value</a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes 
+   <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>Uses <code><a href="dom.html#htmlelement">HTMLElement</a></code>.</dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-figcaption-element">figcaption</a></code> element <a href="dom.html#represents">represents</a> a caption or legend for the rest of
+  the contents of the <code><a href="#the-figcaption-element">figcaption</a></code> element's parent <code><a href="#the-figure-element">figure</a></code> element<span class="impl">, if any</span>.</p>
+
+
+
+  <h4 id="the-div-element"><span class="secno">4.4.13 </span>The <dfn><code>div</code></dfn> element</h4>
+
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dd><a href="dom.html#palpable-content-0">Palpable content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>Neither tag is omissible</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#allowed-aria-roles,-states-and-properties">Any role value</a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes 
+   <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+    <pre class="idl">interface <dfn id="htmldivelement">HTMLDivElement</dfn> : <a href="dom.html#htmlelement">HTMLElement</a> {};</pre>
+   </dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-div-element">div</a></code> element has no special meaning at all. It
+  <a href="dom.html#represents">represents</a> its children. It can be used with the <code data-anolis-xref="attr-class"><a href="dom.html#classes">class</a></code>, <code data-anolis-xref="attr-lang"><a href="dom.html#attr-lang">lang</a></code>, and <code data-anolis-xref="attr-title"><a href="dom.html#attr-title">title</a></code> attributes to mark up semantics
+  common to a group of consecutive elements.</p>
+
+  <p class="note">Authors are strongly encouraged to view the
+  <code><a href="#the-div-element">div</a></code> element as an element of last resort, for when no
+  other element is suitable. Use of more appropriate elements instead
+  of the <code><a href="#the-div-element">div</a></code> element leads to better accessibility for
+  readers and easier maintainability for authors.</p>
+
+  <div class="example">
+
+   <p>For example, a blog post would be marked up using
+   <code><a href="sections.html#the-article-element">article</a></code>, a chapter using <code><a href="sections.html#the-section-element">section</a></code>, a
+   page's navigation aids using <code><a href="sections.html#the-nav-element">nav</a></code>, and a group of form
+   controls using <code><a href="forms.html#the-fieldset-element">fieldset</a></code>.</p>
+
+   <p>On the other hand, <code><a href="#the-div-element">div</a></code> elements can be useful for
+   stylistic purposes or to wrap multiple paragraphs within a section
+   that are all to be annotated in a similar way. In the following
+   example, we see <code><a href="#the-div-element">div</a></code> elements used as a way to set the
+   language of two paragraphs at once, instead of setting the language
+   on the two paragraph elements separately:</p>
+
+   <pre>&lt;article lang="en-US"&gt;
+ &lt;h1&gt;My use of language and my cats&lt;/h1&gt;
+ &lt;p&gt;My cat's behavior hasn't changed much since her absence, except
+ that she plays her new physique to the neighbors regularly, in an
+ attempt to get pets.&lt;/p&gt;
+ &lt;div lang="en-GB"&gt;
+  &lt;p&gt;My other cat, coloured black and white, is a sweetie. He followed
+  us to the pool today, walking down the pavement with us. Yesterday
+  he apparently visited our neighbours. I wonder if he recognises that
+  their flat is a mirror image of ours.&lt;/p&gt;
+  &lt;p&gt;Hm, I just noticed that in the last paragraph I used British
+  English. But I'm supposed to write in American English. So I
+  shouldn't say "pavement" or "flat" or "colour"...&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;p&gt;I should say "sidewalk" and "apartment" and "color"!&lt;/p&gt;
+&lt;/article&gt;</pre>
+
+  </div>
+  <!--FORK-->
+<!-- Start of main element definition -->
+  <h4 id="the-main-element"><span class="secno">4.4.14 </span>The <dfn><code>main</code></dfn> element</h4>
+  <dl class="element"><dt><a data-anolis-xref="element-dfn-categories" href="dom.html#element-dfn-categories">Categories</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dd><a href="dom.html#palpable-content-0">Palpable content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-contexts" href="dom.html#element-dfn-contexts">Contexts in which this element can be used</a>:</dt>
+   <dd>Where <a href="dom.html#flow-content-1">flow content</a> is expected, but with no <code><a href="sections.html#the-article-element">article</a></code>, <code><a href="sections.html#the-aside-element">aside</a></code>, 
+   <code><a href="sections.html#the-footer-element">footer</a></code>, <code><a href="sections.html#the-header-element">header</a></code> or <code><a href="sections.html#the-nav-element">nav</a></code> element ancestors.</dd>
+   <dt><a data-anolis-xref="element-dfn-content-model" href="dom.html#element-dfn-content-model">Content model</a>:</dt>
+   <dd><a href="dom.html#flow-content-1">Flow content</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-attributes" href="dom.html#element-dfn-attributes">Content attributes</a>:</dt>
+   <dd><a href="dom.html#global-attributes">Global attributes</a></dd>
+   <dt><a data-anolis-xref="element-dfn-tag-omission" href="dom.html#element-dfn-tag-omission">Tag omission in text/html</a>:</dt>
+   <dd>Neither tag is omissible</dd>
+   <dt>Allowed <a href="dom.html#aria-role-attribute">ARIA role attribute</a> values:</dt>
+   <dd><a href="dom.html#index-aria-main"><code title="">main</code></a> role (default - <a href="dom.html#aria-usage-note"><em>do not set</em></a>) or <a href="dom.html#index-aria-presentation"><code title="">presentation</code></a>.</dd>
+   <dt>Allowed <a href="dom.html#state-and-property-attributes">ARIA state and property attributes</a>:</dt>
+   <dd><a href="dom.html#index-aria-global">Global aria-* attributes</a></dd>
+   <dd>Any <code title="">aria-*</code> attributes 
+   <a href="dom.html#allowed-aria-roles,-states-and-properties">applicable to the allowed roles</a>.</dd>
+   <dt><a data-anolis-xref="element-dfn-dom" href="dom.html#element-dfn-dom">DOM interface</a>:</dt><!--TOPIC:DOM APIs-->
+   <dd>
+    Uses <code><a href="dom.html#htmlelement">HTMLElement</a></code>
+   </dd>
+  </dl><!--TOPIC:HTML--><p>The <code><a href="#the-main-element">main</a></code> element <a href="dom.html#represents">represents</a> the <dfn id="main-content">main content</dfn> of the <code><a href="sections.html#the-body-element">body</a></code> 
+  of a document or application. The main content area consists of content that is directly related to or expands upon
+  the central topic of a document or central functionality of an application.</p>
+
+  <p class="note">The <code><a href="#the-main-element">main</a></code> element is not <a href="dom.html#sectioning-content-0">sectioning content</a> and has no effect 
+  on the document <a href="sections.html#outline">outline</a></p>
+  <p>The main content area of a document includes content that is unique to that document and 
+  excludes content that is repeated  across a set of documents such as site navigation links, 
+  copyright information, site logos and banners and search forms (unless the document or 
+  applications main function is that of a search form).</p>  
+
+  <p class="note">User agents that support keyboard navigation of content are strongly encouraged to provide 
+  a method to navigate to the <code><a href="#the-main-element">main</a></code> element and once navigated to, ensure the next 
+  element in the focus order is the first focusable element within the <code><a href="#the-main-element">main</a></code> element. 
+  This will provide a simple method for keyboard users to bypass  blocks of content such as navigation links. </p>
+
+  <p class="auth">Authors must not include more than one <code><a href="#the-main-element">main</a></code> element in a document. </p>
+  <p class="auth">Authors must not include the <code><a href="#the-main-element">main</a></code> element as a descendant of an <code><a href="sections.html#the-article-element">article</a></code>, 
+  <code><a href="sections.html#the-aside-element">aside</a></code>, <code><a href="sections.html#the-footer-element">footer</a></code>, <code><a href="sections.html#the-header-element">header</a></code> or <code><a href="sections.html#the-nav-element">nav</a></code> element.</p>
+  <p class="note">The <code><a href="#the-main-element">main</a></code> element is not suitable for use to identify the main content areas of sub sections of a 
+  document or application. The simplest solution is to not mark up the main content of a sub section at all, and just leave it 
+  as implicit, but an author could use a <span>grouping content</span> or <a href="dom.html#sectioning-content-0">sectioning content</a> element as appropriate.</p> 
+  <p class="note">Authors are advised to use ARIA <code>role="main"</code> attribute on the 
+  <code><a href="#the-main-element">main</a></code> element until user agents implement the required role mapping.</p>
+
+  <div class="example">
+  <pre>  &lt;main role="main"&gt; 
+  ... 
+  &lt;/main&gt;</pre>
+  </div>
+
+  
+   <p>In the following example, we see 2 articles about skateboards (the main topic of a 
+    Web page) the main topic content is identified by the use of the <code><a href="#the-main-element">main</a></code> element.</p>
+   
+  <div class="example"> 
+  <pre>&lt;!-- other content --&gt;
+
+<strong data-anolis-xref="">&lt;main&gt;</strong>
+
+  &lt;h1&gt;Skateboards&lt;/h1&gt;
+  &lt;p&gt;The skateboard is the way cool kids get around&lt;/p&gt;
+  
+  &lt;article&gt;
+  &lt;h2&gt;Longboards&lt;/h2&gt;
+  &lt;p&gt;Longboards are a type of skateboard with a longer 
+  wheelbase and larger, softer wheels.&lt;/p&gt;
+  &lt;p&gt;... &lt;/p&gt;
+  &lt;p&gt;... &lt;/p&gt;
+  &lt;/article&gt;
+
+  &lt;article&gt;
+  &lt;h2&gt;Electric Skateboards&lt;/h2&gt;
+  &lt;p&gt;These no longer require the propelling of the skateboard
+  by means of the feet; rather an electric motor propels the board, 
+  fed by an electric battery.&lt;/p&gt;
+  &lt;p&gt;... &lt;/p&gt;
+  &lt;p&gt;... &lt;/p&gt;
+  &lt;/article&gt;
+
+<strong>&lt;/main&gt;</strong>
+
+  &lt;!-- other content --&gt;</pre>
+
+  </div>
+  
+  <p>Here is a graduation programme the main content section is defined by the use of the <code><a href="#the-main-element">main</a></code> element. 
+  Note in this example the <code><a href="#the-main-element">main</a></code> element contains a <code><a href="sections.html#the-nav-element">nav</a></code> element consisting of links to 
+  sub sections of the main content.</p>
+  <div class="example">
+    
+  <pre>&lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+  &lt;head&gt;<br>&lt;title&gt;Graduation Ceremony Summer 2022&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+  &lt;header&gt;The Lawson Academy:
+  &lt;nav&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;a href="courses.html"&gt;Courses&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="fees.html"&gt;Fees&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a&gt;Graduation&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/nav&gt; 
+  &lt;/header&gt;
+
+
+<strong data-anolis-xref="">&lt;main&gt;</strong>
+
+
+  &lt;h1&gt;Graduation&lt;/h1&gt;
+
+  &lt;nav&gt;
+  &lt;ul&gt;
+  &lt;li&gt;&lt;a href="#ceremony"&gt;Ceremony&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#graduates"&gt;Graduates&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#awards"&gt;Awards&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;/nav&gt;
+
+  &lt;H2 id="ceremony"&gt;Ceremony&lt;/H2&gt;
+  &lt;p&gt;Opening Procession&lt;/p&gt;
+  &lt;p&gt;Speech by Valedictorian&lt;/p&gt;
+  &lt;p&gt;Speech by Class President&lt;/p&gt;
+  &lt;p&gt;Presentation of Diplomas&lt;/p&gt;
+  &lt;p&gt;Closing Speech by Headmaster&lt;/p&gt;
+
+  &lt;h2 id="graduates"&gt;Graduates&lt;/h2&gt;
+  &lt;ul&gt;
+  &lt;li&gt;Eileen Williams&lt;/li&gt;
+  &lt;li&gt;Andy Maseyk&lt;/li&gt;
+  &lt;li&gt;Blanca Sainz Garcia&lt;/li&gt;
+  &lt;li&gt;Clara Faulkner&lt;/li&gt;
+  &lt;li&gt;Gez Lemon&lt;/li&gt;
+  &lt;li&gt;Eloisa Faulkner&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;h2 id="awards"&gt;Awards&lt;/h2&gt;
+  &lt;ul&gt;
+  &lt;li&gt;Clara Faulkner&lt;/li&gt;
+  &lt;li&gt;Eloisa Faulkner&lt;/li&gt;
+  &lt;li&gt;Blanca Sainz Garcia&lt;/li&gt;
+  &lt;/ul&gt;
+
+<strong>&lt;/main&gt;</strong>
+
+  &lt;footer&gt; Copyright 2012 B.lawson&lt;/footer&gt;
+
+  &lt;/body&gt;
+  &lt;/html&gt;</pre>
+  </div>
+  
+<!-- end of main element definition -->
+
+  
